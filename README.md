@@ -1,61 +1,63 @@
 # contribution-planner
 
-App pessoal que calcula onde vai o aporte mensal de uma carteira de investimentos, seguindo a regra "Onde Aportar": o aporte vai para a classe de ativos mais abaixo do alvo e, dentro dela, para as duas ações mais atrasadas, meio a meio, sem passar do alvo de nenhuma.
+A personal app that works out where each monthly investment contribution should go, following the "Onde Aportar" ("where to invest") rule: the money goes to the asset class furthest below its target and, within that class, is split half and half between the two stocks furthest below their own targets, never pushing any of them past its target.
 
-> **Status:** em design. As specs estão aprovadas e as telas estão desenhadas; o código da aplicação ainda não foi escrito.
+> **Status:** in design. The specs are approved and the screens are drawn; the application code has not been written yet.
 
-## Telas
+The app is built for a Brazilian investor, so the UI, specs and architecture decisions are written in Portuguese. Amounts are in Brazilian reais (R$).
 
-**Plano de aporte**: digite quanto vai investir e veja o que comprar.
+## Screens
 
-![Tela Plano de aporte](docs/images/plano-de-aporte.png)
+**Contribution plan** (*Plano de aporte*): enter how much you will invest and see what to buy.
 
-**Carteira**: cadastro dos ativos, agrupados por classe.
+![Contribution plan screen](docs/images/plano-de-aporte.png)
 
-![Tela Carteira](docs/images/carteira.png)
+**Portfolio** (*Carteira*): register your assets, grouped by class.
 
-O desenho fica em [`design/contribution-planner.pen`](design/contribution-planner.pen) (feito no Pencil). As imagens acima são exportadas dele.
+![Portfolio screen](docs/images/carteira.png)
 
-## Como o cálculo funciona
+The design lives in [`design/contribution-planner.pen`](design/contribution-planner.pen) (made in Pencil). The images above are exported from it.
 
-A carteira tem quatro classes com alvos fixos: Ações BR 40%, Stocks 30%, Renda fixa 20% e Bitcoin 10%.
+## How the calculation works
 
-1. O patrimônio total é a soma dos ativos mais o aporte.
-2. O aporte vai para a classe com a maior diferença até o alvo. Se sobrar, segue para a próxima.
-3. Dentro da classe, o valor é dividido meio a meio entre as duas ações mais abaixo do próprio alvo. Nenhuma ação passa do alvo; o excesso vai para a outra do par e depois para as próximas.
-4. O método nunca vende: quem está no alvo ou acima dele não recebe nada.
+The portfolio has four classes with fixed targets: Brazilian stocks 40%, US stocks 30%, fixed income 20% and Bitcoin 10%.
 
-Todas as regras, com exemplos verificáveis, estão nas specs:
+1. Total wealth is the sum of all assets plus the contribution.
+2. The contribution goes to the class with the largest gap to its target. Anything left over moves on to the next class.
+3. Within the class, the amount is split half and half between the two stocks furthest below their own targets. No stock goes past its target; the excess goes to the other stock in the pair, then to the next ones.
+4. The method never sells: anything at or above its target receives nothing.
 
-- [Plano de aporte](.spec/features/contribution-plan/spec.md) e o [design técnico](.spec/features/contribution-plan/design.md)
-- [Pesos e quarentena](.spec/features/asset-weights/spec.md) (próxima feature)
+Every rule, with verifiable examples, is in the specs (in Portuguese):
+
+- [Contribution plan](.spec/features/contribution-plan/spec.md) and its [technical design](.spec/features/contribution-plan/design.md)
+- [Weights and quarantine](.spec/features/asset-weights/spec.md) (next feature)
 
 ## Stack
 
-| Camada | Tecnologia |
+| Layer | Technology |
 |---|---|
 | Backend | Java 25, Spring Boot 4, Maven, Flyway |
-| Banco | PostgreSQL 17 (Docker no desenvolvimento) |
-| Frontend | React, Vite, TypeScript, shadcn/ui, fonte Onest |
-| Posições da carteira | API da Pluggy via MeuPluggy (planejado) |
+| Database | PostgreSQL 17 (Docker for local development) |
+| Frontend | React, Vite, TypeScript, shadcn/ui, Onest font |
+| Portfolio positions | Pluggy API through MeuPluggy (planned) |
 
-Restrição do projeto: custo zero de hospedagem e de APIs. Valores em dinheiro são sempre centavos inteiros (`long`), nunca ponto flutuante.
+Project constraint: zero cost for hosting and APIs. Money is always stored as integer cents (`long`), never as floating point.
 
-## Decisões de arquitetura
+## Architecture decisions
 
-| ADR | Decisão | Status |
+| ADR | Decision | Status |
 |---|---|---|
-| [001](docs/adr/001-usar-pluggy-via-meu-pluggy-para-posicoes.md) | Buscar as posições pela Pluggy via MeuPluggy | Accepted |
-| [002](docs/adr/002-hospedar-em-vercel-render-e-neon.md) | Hospedar em Vercel, Render e Neon | Proposed |
-| [003](docs/adr/003-usar-shadcn-ui-com-telas-desenhadas-no-pencil.md) | shadcn/ui no código, telas desenhadas no Pencil | Accepted |
-| [004](docs/adr/004-seguir-conventional-commits.md) | Commits no padrão Conventional Commits | Accepted |
+| [001](docs/adr/001-usar-pluggy-via-meu-pluggy-para-posicoes.md) | Fetch positions from Pluggy through MeuPluggy | Accepted |
+| [002](docs/adr/002-hospedar-em-vercel-render-e-neon.md) | Host on Vercel, Render and Neon | Proposed |
+| [003](docs/adr/003-usar-shadcn-ui-com-telas-desenhadas-no-pencil.md) | shadcn/ui in code, screens designed in Pencil | Accepted |
+| [004](docs/adr/004-seguir-conventional-commits.md) | Conventional Commits for commit messages | Accepted |
 
-## Como o projeto é desenvolvido
+## How the project is developed
 
-- **Spec-driven:** cada feature tem uma spec com histórias e critérios de aceite. Todo critério vira um teste anotado com `@spec:AC-xxx`, e uma feature só fecha quando a auditoria mecânica da skill [onp-spec-driven](.claude/skills/onp-spec-driven/SKILL.md) sai limpa.
-- **Constituição:** princípios verificáveis do projeto em [`.spec/constituicao.md`](.spec/constituicao.md).
-- **Commits:** [Conventional Commits](https://www.conventionalcommits.org/pt-br/v1.0.0/), com a feature no escopo e a tarefa na descrição, por exemplo `feat(contribution-plan): T-003 calcular a divisão meio a meio do par`.
+- **Spec-driven:** each feature has a spec with user stories and acceptance criteria. Every criterion becomes a test tagged `@spec:AC-xxx`, and a feature is only done when the mechanical audit of the [onp-spec-driven](.claude/skills/onp-spec-driven/SKILL.md) skill passes.
+- **Constitution:** the project's verifiable principles are in [`.spec/constituicao.md`](.spec/constituicao.md).
+- **Commits:** [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/), with the feature as the scope and the task code in the description, e.g. `feat(contribution-plan): T-003 calcular a divisão meio a meio do par`.
 
-## Aviso
+## Disclaimer
 
-Projeto pessoal e de estudo. Não é recomendação de investimento.
+A personal learning project. Not investment advice.
