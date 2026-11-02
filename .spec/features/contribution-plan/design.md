@@ -121,6 +121,40 @@ Conferência com o AC-027: total R$ 33.000,00, Ações BR com alvo R$ 13.200,00 
 
 ## Telas
 
+### Identidade visual (ADR-003)
+
+Desenho em `design/contribution-planner.pen`; componentes shadcn/ui no código. Os tokens abaixo existem como variáveis no `.pen`, com os mesmos nomes do tema shadcn, e viram as variáveis CSS do frontend.
+
+- **Fonte**: Onest para tudo, com pesos 400, 500 e 600. No `.pen` ela é a variável `--font-primary`. No frontend vem do pacote `@fontsource-variable/onest` (servida pelo próprio app, sem chamada ao Google Fonts) e é a `--font-sans` do tema shadcn/Tailwind, herdada por todos os componentes. A Onest tem algarismos tabulares (`tnum`, verificado no arquivo da fonte), mas não por padrão: toda coluna ou lista de valores em reais usa `tabular-nums` e fica alinhada à direita.
+- **Paleta**: "A · Petróleo", com primária verde-petróleo e neutros frios (escolhida pelo usuário: "Gostei da paleta A").
+
+| Token | Claro | Escuro |
+|---|---|---|
+| `--background` | `#F6F8F9` | `#0B1215` |
+| `--foreground` | `#0F1B22` | `#E8EEF0` |
+| `--card` | `#FFFFFF` | `#121B1F` |
+| `--primary` / `--primary-foreground` | `#0E6B70` / `#FFFFFF` | `#3BA9AC` / `#06201F` |
+| `--secondary`, `--muted` | `#EAF0F2`, `#EEF2F4` | `#1A2529` |
+| `--muted-foreground` | `#5B6770` | `#93A3AB` |
+| `--accent` / `--accent-foreground` | `#E3F1F1` / `#0E6B70` | `#12302F` / `#7FD3D4` |
+| `--destructive` | `#C2362F` | `#E5534B` |
+| `--border`, `--input` | `#DDE3E7` | `#24333A` |
+| `--ring` | `#0E6B70` | `#3BA9AC` |
+| `--color-warning` / `-foreground` | `#FFF4D6` / `#6B4A00` | `#3A2C07` / `#F5C44E` |
+
+Cor fixa por classe, sempre ao lado do nome da classe (nunca só a cor). Elas foram validadas para daltonismo em pares vizinhos, na ordem abaixo, nos dois modos:
+
+| Classe | Token | Claro | Escuro |
+|---|---|---|---|
+| Ações BR | `--class-acoes-br` | `#2a78d6` | `#3987e5` |
+| Stocks | `--class-stocks` | `#008300` | `#008300` |
+| Renda fixa | `--class-renda-fixa` | `#6250d6` | `#9085e9` |
+| Bitcoin | `--class-bitcoin` | `#eb6834` | `#d95926` |
+
+"Abaixo do alvo" usa `--accent` com texto `--primary`; avisos (AC-025, AC-031) usam `--color-warning` com ícone; erros usam `--destructive`.
+
+### Conteúdo das telas
+
 - **Carteira**: lista agrupada por classe, formulário de novo ativo e de edição (select com as 4 classes), remoção com diálogo de confirmação próprio (não `window.confirm`, para ser testável), estado vazio (AC-008) e erro de servidor mantendo o formulário preenchido (AC-009).
 - **Plano**: campo de aporte, botão Calcular (desabilitado sem ativos, AC-021), tabela por classe (AC-011), lista do que comprar e do que não foi alocado (AC-019) e avisos (AC-025, AC-031).
 
