@@ -59,7 +59,16 @@ Tabela `asset`:
 | asset_class | varchar(20) | `ACOES_BR`, `STOCKS`, `RENDA_FIXA`, `BITCOIN` (check constraint + enum Java) |
 | value_cents | bigint | 0 a 10.000.000.000 (R$ 100.000.000,00) |
 
-O plano **não é gravado** (histórico é feature separada). Os alvos das classes (40/30/20/10) ficam como constante no enum `AssetClass` (ASM-003).
+Tabela `class_target`:
+
+| coluna | tipo | regra |
+|---|---|---|
+| asset_class | varchar(20) | PK, uma linha por classe |
+| target_percent | smallint | 0 a 100 (ASM-013) |
+
+A migração inicial insere 40/30/20/10 (AC-056, ASM-014). Salvar metas troca as quatro linhas numa única transação, e a soma de 100% é validada antes de gravar (AC-052).
+
+O plano **não é gravado** (histórico é feature separada).
 
 ## API
 
@@ -69,9 +78,11 @@ O plano **não é gravado** (histórico é feature separada). Os alvos das class
 | POST | `/api/assets` | `{code, assetClass, valueCents}` → 201 + ativo | 400 validação, 409 código repetido |
 | PUT | `/api/assets/{id}` | igual ao POST → 200 | 400, 404, 409 |
 | DELETE | `/api/assets/{id}` | 204 | 404 |
+| GET | `/api/class-targets` | `[{assetClass, targetPercent}]`, sempre as 4 classes | — |
+| PUT | `/api/class-targets` | `[{assetClass, targetPercent}]` com as 4 classes → 200 | 400 soma ≠ 100, meta fora da faixa, classe faltando ou repetida |
 | POST | `/api/plans` | `{contributionCents}` → plano (abaixo) | 400 aporte fora da faixa |
 
-Erros saem como `{code, message}`, com `code` estável (`CODE_REQUIRED`, `VALUE_OUT_OF_RANGE`, `DUPLICATE_CODE`, `INVALID_CLASS`, `CONTRIBUTION_OUT_OF_RANGE`) e `message` com o texto da spec em português. Uma classe desconhecida no JSON vira 400 `INVALID_CLASS` (AC-007).
+Erros saem como `{code, message}`, com `code` estável (`CODE_REQUIRED`, `VALUE_OUT_OF_RANGE`, `DUPLICATE_CODE`, `INVALID_CLASS`, `CONTRIBUTION_OUT_OF_RANGE`, `TARGETS_SUM_NOT_100`, `TARGET_OUT_OF_RANGE`) e `message` com o texto da spec em português. Uma classe desconhecida no JSON vira 400 `INVALID_CLASS` (AC-007).
 
 Resposta do plano:
 
@@ -94,14 +105,14 @@ O frontend valida código vazio (AC-004) e faixa de valor (AC-005, AC-020) antes
 
 ## O cálculo (`plan/domain`)
 
-Classe `ContributionPlanner`, pura, sem dependência de Spring nem de banco. Entrada: lista de ativos (código, classe, centavos), aporte em centavos e uma `AssetTargetPolicy`. Saída: o plano acima.
+Classe `ContributionPlanner`, pura, sem dependência de Spring nem de banco. Entrada: lista de ativos (código, classe, centavos), as metas das classes (percentual inteiro por classe, somando 100), aporte em centavos e uma `AssetTargetPolicy`. O cálculo não lê metas do banco: quem chama (o endpoint do plano) carrega as metas e as passa. Saída: o plano acima.
 
 `AssetTargetPolicy` decide o alvo de cada ativo dentro da classe. Nesta feature a implementação é `EqualWeightPolicy`, com o alvo da classe ÷ número de ativos (AC-022). A feature asset-weights troca só essa peça.
 
 Passo a passo:
 
 1. `total = soma dos ativos + aporte` (AC-010, AC-029).
-2. Para cada classe: `alvo = total × percentual`, `atual = soma dos ativos da classe`, `falta = alvo − atual` (AC-011).
+2. Para cada classe: `alvo = total × meta da classe / 100`, `atual = soma dos ativos da classe`, `falta = alvo − atual` (AC-011, AC-054). Classe com meta 0% fica fora do plano: recebe R$ 0,00 e não gera aviso (AC-055, ASM-015).
 3. `restante = aporte`. Percorre as classes com `falta > 0` em ordem decrescente de falta (AC-012):
    - classe sem ativos → adiciona o aviso e pula (AC-025);
    - `orçamento = min(restante, falta da classe arredondada para baixo)` (AC-026);
@@ -155,16 +166,16 @@ Cor fixa por classe, sempre ao lado do nome da classe (nunca só a cor). Elas fo
 
 ### Conteúdo das telas
 
-- **Carteira**: lista agrupada por classe, formulário de novo ativo e de edição (select com as 4 classes), remoção com diálogo de confirmação próprio (não `window.confirm`, para ser testável), estado vazio (AC-008) e erro de servidor mantendo o formulário preenchido (AC-009).
+- **Carteira**: lista agrupada por classe, formulário de novo ativo e de edição (select com as 4 classes), remoção com diálogo de confirmação próprio (não `window.confirm`, para ser testável), estado vazio (AC-008) e erro de servidor mantendo o formulário preenchido (AC-009). No cabeçalho, ao lado da distribuição atual, o botão "Editar metas" abre o diálogo **Metas por classe**: um campo de % por classe (com a cor da classe), a soma ao vivo ("Soma: 90% · faltam 10%") e o Salvar desabilitado enquanto a soma não for 100% (AC-051 a AC-053, AC-056). A legenda da distribuição mostra atual e meta por classe ("18% · meta 40%").
 - **Plano**: campo de aporte, botão Calcular (desabilitado sem ativos, AC-021), tabela por classe (AC-011), lista do que comprar e do que não foi alocado (AC-019) e avisos (AC-025, AC-031).
 
 ## Como cada critério de aceite é provado
 
 | Camada | Critérios de aceite |
 |---|---|
-| Unitário do cálculo (JUnit, sem Spring) | AC-010 a AC-018, AC-022 a AC-031 |
-| Integração da API (Spring Boot + Testcontainers) | AC-001 (persistência), AC-003 (removido sai do plano), AC-005, AC-006, AC-007 (400), AC-020 |
-| Frontend (Vitest + RTL + MSW) | AC-001, AC-002, AC-003, AC-004, AC-005, AC-006, AC-007, AC-008, AC-009, AC-019, AC-020, AC-021, AC-025, AC-031 |
+| Unitário do cálculo (JUnit, sem Spring) | AC-010 a AC-018, AC-022 a AC-031, AC-054, AC-055 |
+| Integração da API (Spring Boot + Testcontainers) | AC-001 (persistência), AC-003 (removido sai do plano), AC-005, AC-006, AC-007 (400), AC-020, AC-051 (persistência), AC-052, AC-053 (400), AC-054 (plano usa as metas salvas), AC-056 |
+| Frontend (Vitest + RTL + MSW) | AC-001, AC-002, AC-003, AC-004, AC-005, AC-006, AC-007, AC-008, AC-009, AC-019, AC-020, AC-021, AC-025, AC-031, AC-051, AC-052, AC-053, AC-056 |
 
 O AC-018 é testado com várias carteiras e aportes gerados a partir de uma semente fixa (reproduzível), conferindo a invariante em todas.
 
