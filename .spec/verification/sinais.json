@@ -1,0 +1,932 @@
+{
+  "schema": 1,
+  "sinais": {
+    "ARQUIVO_INEXISTENTE::asset-weights::T-001": {
+      "codigo": "ARQUIVO_INEXISTENTE",
+      "feature": "asset-weights",
+      "ref": "T-001",
+      "ocorrencias": 1,
+      "primeiraVez": "2026-11-02T04:28:46.190Z",
+      "ultimaVez": "2026-11-02T04:28:46.190Z",
+      "gitRev": null
+    },
+    "AC_SEM_TASK::asset-weights::AC-032": {
+      "codigo": "AC_SEM_TASK",
+      "feature": "asset-weights",
+      "ref": "AC-032",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.190Z",
+      "ultimaVez": "2026-11-02T04:28:55.624Z",
+      "gitRev": null
+    },
+    "AC_SEM_TASK::asset-weights::AC-033": {
+      "codigo": "AC_SEM_TASK",
+      "feature": "asset-weights",
+      "ref": "AC-033",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.190Z",
+      "ultimaVez": "2026-11-02T04:28:55.624Z",
+      "gitRev": null
+    },
+    "AC_SEM_TASK::asset-weights::AC-034": {
+      "codigo": "AC_SEM_TASK",
+      "feature": "asset-weights",
+      "ref": "AC-034",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.190Z",
+      "ultimaVez": "2026-11-02T04:28:55.624Z",
+      "gitRev": null
+    },
+    "AC_SEM_TASK::asset-weights::AC-035": {
+      "codigo": "AC_SEM_TASK",
+      "feature": "asset-weights",
+      "ref": "AC-035",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.190Z",
+      "ultimaVez": "2026-11-02T04:28:55.624Z",
+      "gitRev": null
+    },
+    "AC_SEM_TASK::asset-weights::AC-036": {
+      "codigo": "AC_SEM_TASK",
+      "feature": "asset-weights",
+      "ref": "AC-036",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.190Z",
+      "ultimaVez": "2026-11-02T04:28:55.624Z",
+      "gitRev": null
+    },
+    "AC_SEM_TASK::asset-weights::AC-037": {
+      "codigo": "AC_SEM_TASK",
+      "feature": "asset-weights",
+      "ref": "AC-037",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.190Z",
+      "ultimaVez": "2026-11-02T04:28:55.624Z",
+      "gitRev": null
+    },
+    "AC_SEM_TASK::asset-weights::AC-038": {
+      "codigo": "AC_SEM_TASK",
+      "feature": "asset-weights",
+      "ref": "AC-038",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.190Z",
+      "ultimaVez": "2026-11-02T04:28:55.624Z",
+      "gitRev": null
+    },
+    "AC_SEM_TASK::asset-weights::AC-039": {
+      "codigo": "AC_SEM_TASK",
+      "feature": "asset-weights",
+      "ref": "AC-039",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.190Z",
+      "ultimaVez": "2026-11-02T04:28:55.624Z",
+      "gitRev": null
+    },
+    "AC_SEM_TASK::asset-weights::AC-040": {
+      "codigo": "AC_SEM_TASK",
+      "feature": "asset-weights",
+      "ref": "AC-040",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.190Z",
+      "ultimaVez": "2026-11-02T04:28:55.624Z",
+      "gitRev": null
+    },
+    "AC_SEM_TASK::asset-weights::AC-041": {
+      "codigo": "AC_SEM_TASK",
+      "feature": "asset-weights",
+      "ref": "AC-041",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.190Z",
+      "ultimaVez": "2026-11-02T04:28:55.624Z",
+      "gitRev": null
+    },
+    "AC_SEM_TASK::asset-weights::AC-042": {
+      "codigo": "AC_SEM_TASK",
+      "feature": "asset-weights",
+      "ref": "AC-042",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.190Z",
+      "ultimaVez": "2026-11-02T04:28:55.624Z",
+      "gitRev": null
+    },
+    "AC_SEM_TASK::asset-weights::AC-043": {
+      "codigo": "AC_SEM_TASK",
+      "feature": "asset-weights",
+      "ref": "AC-043",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.190Z",
+      "ultimaVez": "2026-11-02T04:28:55.624Z",
+      "gitRev": null
+    },
+    "AC_SEM_TASK::asset-weights::AC-044": {
+      "codigo": "AC_SEM_TASK",
+      "feature": "asset-weights",
+      "ref": "AC-044",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.190Z",
+      "ultimaVez": "2026-11-02T04:28:55.624Z",
+      "gitRev": null
+    },
+    "AC_SEM_TASK::asset-weights::AC-045": {
+      "codigo": "AC_SEM_TASK",
+      "feature": "asset-weights",
+      "ref": "AC-045",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.190Z",
+      "ultimaVez": "2026-11-02T04:28:55.624Z",
+      "gitRev": null
+    },
+    "AC_SEM_TASK::asset-weights::AC-046": {
+      "codigo": "AC_SEM_TASK",
+      "feature": "asset-weights",
+      "ref": "AC-046",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.190Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TASK::asset-weights::AC-047": {
+      "codigo": "AC_SEM_TASK",
+      "feature": "asset-weights",
+      "ref": "AC-047",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.190Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TASK::asset-weights::AC-048": {
+      "codigo": "AC_SEM_TASK",
+      "feature": "asset-weights",
+      "ref": "AC-048",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.190Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TASK::asset-weights::AC-049": {
+      "codigo": "AC_SEM_TASK",
+      "feature": "asset-weights",
+      "ref": "AC-049",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.190Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TASK::asset-weights::AC-050": {
+      "codigo": "AC_SEM_TASK",
+      "feature": "asset-weights",
+      "ref": "AC-050",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.190Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::asset-weights::AC-032": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "asset-weights",
+      "ref": "AC-032",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.190Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::asset-weights::AC-033": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "asset-weights",
+      "ref": "AC-033",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.190Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::asset-weights::AC-034": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "asset-weights",
+      "ref": "AC-034",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.190Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::asset-weights::AC-035": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "asset-weights",
+      "ref": "AC-035",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.190Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::asset-weights::AC-036": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "asset-weights",
+      "ref": "AC-036",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.191Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::asset-weights::AC-037": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "asset-weights",
+      "ref": "AC-037",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.191Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::asset-weights::AC-038": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "asset-weights",
+      "ref": "AC-038",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.191Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::asset-weights::AC-039": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "asset-weights",
+      "ref": "AC-039",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.191Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::asset-weights::AC-040": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "asset-weights",
+      "ref": "AC-040",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.191Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::asset-weights::AC-041": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "asset-weights",
+      "ref": "AC-041",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.191Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::asset-weights::AC-042": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "asset-weights",
+      "ref": "AC-042",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.191Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::asset-weights::AC-043": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "asset-weights",
+      "ref": "AC-043",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.191Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::asset-weights::AC-044": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "asset-weights",
+      "ref": "AC-044",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.191Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::asset-weights::AC-045": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "asset-weights",
+      "ref": "AC-045",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.191Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::asset-weights::AC-046": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "asset-weights",
+      "ref": "AC-046",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.191Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::asset-weights::AC-047": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "asset-weights",
+      "ref": "AC-047",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.191Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::asset-weights::AC-048": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "asset-weights",
+      "ref": "AC-048",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.191Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::asset-weights::AC-049": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "asset-weights",
+      "ref": "AC-049",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.191Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::asset-weights::AC-050": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "asset-weights",
+      "ref": "AC-050",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.191Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "ARQUIVO_INEXISTENTE::contribution-plan::T-001": {
+      "codigo": "ARQUIVO_INEXISTENTE",
+      "feature": "contribution-plan",
+      "ref": "T-001",
+      "ocorrencias": 1,
+      "primeiraVez": "2026-11-02T04:28:46.191Z",
+      "ultimaVez": "2026-11-02T04:28:46.191Z",
+      "gitRev": null
+    },
+    "AC_SEM_TASK::contribution-plan::AC-028": {
+      "codigo": "AC_SEM_TASK",
+      "feature": "contribution-plan",
+      "ref": "AC-028",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.191Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TASK::contribution-plan::AC-029": {
+      "codigo": "AC_SEM_TASK",
+      "feature": "contribution-plan",
+      "ref": "AC-029",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.191Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TASK::contribution-plan::AC-030": {
+      "codigo": "AC_SEM_TASK",
+      "feature": "contribution-plan",
+      "ref": "AC-030",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.191Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TASK::contribution-plan::AC-031": {
+      "codigo": "AC_SEM_TASK",
+      "feature": "contribution-plan",
+      "ref": "AC-031",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.191Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::contribution-plan::AC-001": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "contribution-plan",
+      "ref": "AC-001",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.191Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::contribution-plan::AC-002": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "contribution-plan",
+      "ref": "AC-002",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.191Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::contribution-plan::AC-003": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "contribution-plan",
+      "ref": "AC-003",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.191Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::contribution-plan::AC-004": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "contribution-plan",
+      "ref": "AC-004",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.191Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::contribution-plan::AC-005": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "contribution-plan",
+      "ref": "AC-005",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.191Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::contribution-plan::AC-006": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "contribution-plan",
+      "ref": "AC-006",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.191Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::contribution-plan::AC-007": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "contribution-plan",
+      "ref": "AC-007",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.191Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::contribution-plan::AC-008": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "contribution-plan",
+      "ref": "AC-008",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.191Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::contribution-plan::AC-009": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "contribution-plan",
+      "ref": "AC-009",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.191Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::contribution-plan::AC-010": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "contribution-plan",
+      "ref": "AC-010",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.191Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::contribution-plan::AC-011": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "contribution-plan",
+      "ref": "AC-011",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.191Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::contribution-plan::AC-012": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "contribution-plan",
+      "ref": "AC-012",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.191Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::contribution-plan::AC-013": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "contribution-plan",
+      "ref": "AC-013",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.191Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::contribution-plan::AC-014": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "contribution-plan",
+      "ref": "AC-014",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.191Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::contribution-plan::AC-015": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "contribution-plan",
+      "ref": "AC-015",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.191Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::contribution-plan::AC-016": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "contribution-plan",
+      "ref": "AC-016",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.191Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::contribution-plan::AC-017": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "contribution-plan",
+      "ref": "AC-017",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.191Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::contribution-plan::AC-018": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "contribution-plan",
+      "ref": "AC-018",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.191Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::contribution-plan::AC-019": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "contribution-plan",
+      "ref": "AC-019",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.191Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::contribution-plan::AC-020": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "contribution-plan",
+      "ref": "AC-020",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.191Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::contribution-plan::AC-021": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "contribution-plan",
+      "ref": "AC-021",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.191Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::contribution-plan::AC-022": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "contribution-plan",
+      "ref": "AC-022",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.191Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::contribution-plan::AC-023": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "contribution-plan",
+      "ref": "AC-023",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.191Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::contribution-plan::AC-024": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "contribution-plan",
+      "ref": "AC-024",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.191Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::contribution-plan::AC-025": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "contribution-plan",
+      "ref": "AC-025",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.191Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::contribution-plan::AC-026": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "contribution-plan",
+      "ref": "AC-026",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.191Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::contribution-plan::AC-027": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "contribution-plan",
+      "ref": "AC-027",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.191Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::contribution-plan::AC-028": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "contribution-plan",
+      "ref": "AC-028",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.191Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::contribution-plan::AC-029": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "contribution-plan",
+      "ref": "AC-029",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.191Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::contribution-plan::AC-030": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "contribution-plan",
+      "ref": "AC-030",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.191Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TESTE::contribution-plan::AC-031": {
+      "codigo": "AC_SEM_TESTE",
+      "feature": "contribution-plan",
+      "ref": "AC-031",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.191Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "GLOB_SEM_ARQUIVOS::—::P-002": {
+      "codigo": "GLOB_SEM_ARQUIVOS",
+      "feature": "—",
+      "ref": "P-002",
+      "ocorrencias": 2,
+      "primeiraVez": "2026-11-02T04:28:46.191Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TASK::contribution-plan::AC-001": {
+      "codigo": "AC_SEM_TASK",
+      "feature": "contribution-plan",
+      "ref": "AC-001",
+      "ocorrencias": 1,
+      "primeiraVez": "2026-11-02T04:28:55.625Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TASK::contribution-plan::AC-002": {
+      "codigo": "AC_SEM_TASK",
+      "feature": "contribution-plan",
+      "ref": "AC-002",
+      "ocorrencias": 1,
+      "primeiraVez": "2026-11-02T04:28:55.625Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TASK::contribution-plan::AC-003": {
+      "codigo": "AC_SEM_TASK",
+      "feature": "contribution-plan",
+      "ref": "AC-003",
+      "ocorrencias": 1,
+      "primeiraVez": "2026-11-02T04:28:55.625Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TASK::contribution-plan::AC-004": {
+      "codigo": "AC_SEM_TASK",
+      "feature": "contribution-plan",
+      "ref": "AC-004",
+      "ocorrencias": 1,
+      "primeiraVez": "2026-11-02T04:28:55.625Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TASK::contribution-plan::AC-005": {
+      "codigo": "AC_SEM_TASK",
+      "feature": "contribution-plan",
+      "ref": "AC-005",
+      "ocorrencias": 1,
+      "primeiraVez": "2026-11-02T04:28:55.625Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TASK::contribution-plan::AC-006": {
+      "codigo": "AC_SEM_TASK",
+      "feature": "contribution-plan",
+      "ref": "AC-006",
+      "ocorrencias": 1,
+      "primeiraVez": "2026-11-02T04:28:55.625Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TASK::contribution-plan::AC-007": {
+      "codigo": "AC_SEM_TASK",
+      "feature": "contribution-plan",
+      "ref": "AC-007",
+      "ocorrencias": 1,
+      "primeiraVez": "2026-11-02T04:28:55.625Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TASK::contribution-plan::AC-008": {
+      "codigo": "AC_SEM_TASK",
+      "feature": "contribution-plan",
+      "ref": "AC-008",
+      "ocorrencias": 1,
+      "primeiraVez": "2026-11-02T04:28:55.625Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TASK::contribution-plan::AC-009": {
+      "codigo": "AC_SEM_TASK",
+      "feature": "contribution-plan",
+      "ref": "AC-009",
+      "ocorrencias": 1,
+      "primeiraVez": "2026-11-02T04:28:55.625Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TASK::contribution-plan::AC-010": {
+      "codigo": "AC_SEM_TASK",
+      "feature": "contribution-plan",
+      "ref": "AC-010",
+      "ocorrencias": 1,
+      "primeiraVez": "2026-11-02T04:28:55.625Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TASK::contribution-plan::AC-011": {
+      "codigo": "AC_SEM_TASK",
+      "feature": "contribution-plan",
+      "ref": "AC-011",
+      "ocorrencias": 1,
+      "primeiraVez": "2026-11-02T04:28:55.625Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TASK::contribution-plan::AC-012": {
+      "codigo": "AC_SEM_TASK",
+      "feature": "contribution-plan",
+      "ref": "AC-012",
+      "ocorrencias": 1,
+      "primeiraVez": "2026-11-02T04:28:55.625Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TASK::contribution-plan::AC-013": {
+      "codigo": "AC_SEM_TASK",
+      "feature": "contribution-plan",
+      "ref": "AC-013",
+      "ocorrencias": 1,
+      "primeiraVez": "2026-11-02T04:28:55.625Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TASK::contribution-plan::AC-014": {
+      "codigo": "AC_SEM_TASK",
+      "feature": "contribution-plan",
+      "ref": "AC-014",
+      "ocorrencias": 1,
+      "primeiraVez": "2026-11-02T04:28:55.625Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TASK::contribution-plan::AC-015": {
+      "codigo": "AC_SEM_TASK",
+      "feature": "contribution-plan",
+      "ref": "AC-015",
+      "ocorrencias": 1,
+      "primeiraVez": "2026-11-02T04:28:55.625Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TASK::contribution-plan::AC-016": {
+      "codigo": "AC_SEM_TASK",
+      "feature": "contribution-plan",
+      "ref": "AC-016",
+      "ocorrencias": 1,
+      "primeiraVez": "2026-11-02T04:28:55.625Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TASK::contribution-plan::AC-017": {
+      "codigo": "AC_SEM_TASK",
+      "feature": "contribution-plan",
+      "ref": "AC-017",
+      "ocorrencias": 1,
+      "primeiraVez": "2026-11-02T04:28:55.625Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TASK::contribution-plan::AC-018": {
+      "codigo": "AC_SEM_TASK",
+      "feature": "contribution-plan",
+      "ref": "AC-018",
+      "ocorrencias": 1,
+      "primeiraVez": "2026-11-02T04:28:55.625Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TASK::contribution-plan::AC-019": {
+      "codigo": "AC_SEM_TASK",
+      "feature": "contribution-plan",
+      "ref": "AC-019",
+      "ocorrencias": 1,
+      "primeiraVez": "2026-11-02T04:28:55.625Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TASK::contribution-plan::AC-020": {
+      "codigo": "AC_SEM_TASK",
+      "feature": "contribution-plan",
+      "ref": "AC-020",
+      "ocorrencias": 1,
+      "primeiraVez": "2026-11-02T04:28:55.625Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TASK::contribution-plan::AC-021": {
+      "codigo": "AC_SEM_TASK",
+      "feature": "contribution-plan",
+      "ref": "AC-021",
+      "ocorrencias": 1,
+      "primeiraVez": "2026-11-02T04:28:55.625Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TASK::contribution-plan::AC-022": {
+      "codigo": "AC_SEM_TASK",
+      "feature": "contribution-plan",
+      "ref": "AC-022",
+      "ocorrencias": 1,
+      "primeiraVez": "2026-11-02T04:28:55.625Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TASK::contribution-plan::AC-023": {
+      "codigo": "AC_SEM_TASK",
+      "feature": "contribution-plan",
+      "ref": "AC-023",
+      "ocorrencias": 1,
+      "primeiraVez": "2026-11-02T04:28:55.625Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TASK::contribution-plan::AC-024": {
+      "codigo": "AC_SEM_TASK",
+      "feature": "contribution-plan",
+      "ref": "AC-024",
+      "ocorrencias": 1,
+      "primeiraVez": "2026-11-02T04:28:55.625Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TASK::contribution-plan::AC-025": {
+      "codigo": "AC_SEM_TASK",
+      "feature": "contribution-plan",
+      "ref": "AC-025",
+      "ocorrencias": 1,
+      "primeiraVez": "2026-11-02T04:28:55.625Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TASK::contribution-plan::AC-026": {
+      "codigo": "AC_SEM_TASK",
+      "feature": "contribution-plan",
+      "ref": "AC-026",
+      "ocorrencias": 1,
+      "primeiraVez": "2026-11-02T04:28:55.625Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    },
+    "AC_SEM_TASK::contribution-plan::AC-027": {
+      "codigo": "AC_SEM_TASK",
+      "feature": "contribution-plan",
+      "ref": "AC-027",
+      "ocorrencias": 1,
+      "primeiraVez": "2026-11-02T04:28:55.625Z",
+      "ultimaVez": "2026-11-02T04:28:55.625Z",
+      "gitRev": null
+    }
+  }
+}
