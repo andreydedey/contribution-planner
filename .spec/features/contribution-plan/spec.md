@@ -1,11 +1,11 @@
 # Spec: Plano de aporte
 
 > feature: contribution-plan
-> status: pronta
+> status: rascunho
 
 ## Contexto
 
-Todo mês o Andrey decide à mão onde vai o aporte, seguindo a regra do "Onde Aportar": primeiro a classe mais abaixo do alvo e, dentro dela, as duas ações mais abaixo do alvo, meio a meio, sem passar do alvo de nenhuma. A conta à mão é lenta e fácil de errar; o app faz a conta a partir da carteira cadastrada e do valor que ele quer investir.
+Todo mês o Andrey decide à mão onde vai o aporte, seguindo a regra do "Onde Aportar": primeiro a classe mais abaixo do alvo e, dentro dela, as duas ações mais abaixo do alvo, meio a meio, sem passar do alvo de nenhuma. A conta à mão é lenta e fácil de errar; o app faz a conta a partir da carteira cadastrada, das metas que ele define para cada classe e do valor que ele quer investir.
 
 ## Histórias
 
@@ -187,7 +187,8 @@ Como Andrey, quero digitar quanto vou investir e ver quanto vai para cada ativo,
 
 #### AC-027 — Exemplo do primeiro aporte
 
-- **Dado** R$ 16.000,00 em Renda fixa, R$ 11.000,00 em Bitcoin, WEGE3, ITUB3, EGIE3 e LREN3 com R$ 0,00 e nenhuma stock
+- **Dado** as metas Ações BR 40%, Stocks 30%, Renda fixa 20% e Bitcoin 10%
+- **E** R$ 16.000,00 em Renda fixa, R$ 11.000,00 em Bitcoin, WEGE3, ITUB3, EGIE3 e LREN3 com R$ 0,00 e nenhuma stock
 - **Quando** eu peço o plano para R$ 6.000,00
 - **Então** o plano mostra R$ 3.000,00 para EGIE3 e R$ 3.000,00 para ITUB3
 
@@ -220,6 +221,50 @@ Como Andrey, quero que o cálculo reproduza os exemplos da minha estratégia, pa
 - **Então** nada é alocado
 - **E** a tela avisa "Nenhuma classe com ativos está abaixo do alvo"
 
+### US-006 — Definir a meta de cada classe
+
+Como Andrey, quero definir a meta percentual de cada classe, para que o plano siga a minha estratégia e eu possa mudá-la sem depender do código.
+
+#### AC-051 — Metas salvas aparecem e continuam salvas
+
+- **Dado** as metas atuais das classes
+- **Quando** eu salvo Ações BR 50%, Stocks 20%, Renda fixa 20% e Bitcoin 10%
+- **Então** a tela mostra essas quatro metas
+- **E** elas continuam iguais depois de recarregar a página
+
+#### AC-052 — Metas que não somam 100% são recusadas
+
+- **Dado** o formulário de metas
+- **Quando** eu salvo metas que somam 90%
+- **Então** a tela avisa "As metas devem somar 100%"
+- **E** nada é salvo
+
+#### AC-053 — Meta fora da faixa é recusada
+
+- **Dado** o formulário de metas
+- **Quando** eu salvo uma meta que não é número inteiro de 0 a 100
+- **Então** a tela avisa "Meta deve ser um número inteiro de 0% a 100%"
+- **E** o servidor recusa a mesma meta (resposta 400)
+
+#### AC-054 — O plano usa as metas salvas
+
+- **Dado** as metas Ações BR 50%, Stocks 20%, Renda fixa 20% e Bitcoin 10% e um patrimônio total de R$ 10.000,00
+- **Quando** eu peço o plano
+- **Então** os valores-alvo são R$ 5.000,00, R$ 2.000,00, R$ 2.000,00 e R$ 1.000,00
+
+#### AC-055 — Classe com meta 0% não recebe aporte
+
+- **Dado** a classe Stocks com meta 0% e sem ativos
+- **Quando** eu peço o plano
+- **Então** o plano mostra R$ 0,00 para Stocks
+- **E** a tela não mostra aviso de classe sem ativos para Stocks
+
+#### AC-056 — Metas iniciais
+
+- **Dado** que nenhuma meta foi salva ainda
+- **Quando** eu abro as metas
+- **Então** a tela mostra Ações BR 40%, Stocks 30%, Renda fixa 20% e Bitcoin 10%
+
 ## Fora de escopo
 
 - Buscar posições na Pluggy (feature pluggy-sync, depois da primeira compra de ações).
@@ -227,7 +272,8 @@ Como Andrey, quero que o cálculo reproduza os exemplos da minha estratégia, pa
 - Histórico de aportes (feature separada, P2).
 - Login (feature auth, no MVP).
 - Pesos e quarentena (feature asset-weights).
-- Editar os alvos das classes pelo app (ficam 40/30/20/10 no código).
+- Criar, renomear ou remover classes (as quatro são fixas; o usuário só define as metas).
+- Meta com casas decimais (ex.: 12,5%).
 - Vender ativos para rebalancear (o método nunca vende).
 - Excluir reserva de emergência da renda fixa (basta não cadastrar a reserva).
 - Relatório de imposto de renda.
@@ -239,8 +285,11 @@ Como Andrey, quero que o cálculo reproduza os exemplos da minha estratégia, pa
 |---|---|---|---|
 | ASM-001 | Valores em reais com 2 casas; metades arredondadas para baixo e o centavo extra para a primeira do par | confirmada | Aprovado com a spec (usuário: "aprova elas") |
 | ASM-002 | Empate na segunda maior diferença é decidido pela ordem alfabética do código | confirmada | Aprovado com a spec (usuário: "aprova elas") |
-| ASM-003 | Alvos das classes: Ações BR 40%, Stocks 30%, Renda fixa 20%, Bitcoin 10% | confirmada | Alvos atuais da estratégia do Andrey |
+| ASM-003 | Alvos das classes: Ações BR 40%, Stocks 30%, Renda fixa 20%, Bitcoin 10% | invalidada | As metas são definidas pelo usuário (US-006); 40/30/20/10 vira só o valor inicial (usuário: "o usuário irá definir qual a meta de cada ativo") |
 | ASM-004 | Nesta feature os valores dos ativos são digitados em reais | confirmada | A integração com a Pluggy é a feature pluggy-sync |
+| ASM-013 | Metas são números inteiros de 0% a 100% e precisam somar exatamente 100% | aberta | |
+| ASM-014 | Antes de o usuário salvar metas, valem 40/30/20/10 como valores iniciais | aberta | |
+| ASM-015 | Classe com meta 0% fica fora do plano: não recebe aporte e não gera o aviso de classe sem ativos | aberta | |
 
 ## Perguntas em aberto
 
@@ -250,3 +299,5 @@ Como Andrey, quero que o cálculo reproduza os exemplos da minha estratégia, pa
 | Q-002 | Se o aporte passa do que falta na classe, a sobra vai para a próxima classe mais atrasada? | respondida | Sim (usuário: "2. sim") |
 | Q-003 | Login no MVP como feature separada e histórico como P2? | respondida | Sim (usuário: "3. sim") |
 | Q-004 | O alvo de cada ação dentro da classe é peso igual? | respondida | Pesos viram feature própria; aqui vale peso igual até lá (usuário: "4. o peso será uma feature também") |
+| Q-009 | A meta definida pelo usuário vale por classe ou por ativo? | respondida | Por classe (usuário: "Para cada classe") |
+| Q-010 | As quatro classes continuam fixas? | respondida | Sim; o usuário só define as metas (usuário: "Continuam fixas") |
