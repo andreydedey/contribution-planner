@@ -1,0 +1,31 @@
+{
+  "version": "2.17",
+  "children": [
+    {
+      "type": "frame",
+      "id": "bi8Au",
+      "x": 0,
+      "y": 0,
+      "name": "Frame",
+      "clip": true,
+      "width": 800,
+      "height": 600,
+      "fill": "#FFFFFF",
+      "layout": "none",
+      "children": [
+        {
+          "type": "text",
+          "id": "LnT5i",
+          "x": 192.3730927056689,
+          "y": 201.83334350585938,
+          "fill": "#000000",
+          "content": "Salvar",
+          "fontFamily": "Inter",
+          "fontSize": 16,
+          "fontWeight": "normal"
+        }
+      ]
+    }
+  ],
+  "fileToken": "740cd71c-0cde-4577-81f6-de45f90065b1"
+}
