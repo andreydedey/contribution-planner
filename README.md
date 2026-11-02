@@ -27,11 +27,6 @@ The portfolio has four asset classes: Brazilian stocks, US stocks, fixed income 
 3. Within the class, the amount is split half and half between the two stocks furthest below their own targets. No stock goes past its target; the excess goes to the other stock in the pair, then to the next ones.
 4. The method never sells: anything at or above its target receives nothing.
 
-Every rule, with verifiable examples, is in the specs (in Portuguese):
-
-- [Contribution plan](.spec/features/contribution-plan/spec.md) and its [technical design](.spec/features/contribution-plan/design.md)
-- [Weights and quarantine](.spec/features/asset-weights/spec.md) (next feature)
-
 ## Stack
 
 | Layer | Technology |
