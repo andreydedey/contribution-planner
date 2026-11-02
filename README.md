@@ -20,7 +20,7 @@ The design lives in [`design/contribution-planner.pen`](design/contribution-plan
 
 ## How the calculation works
 
-The portfolio has four classes with fixed targets: Brazilian stocks 40%, US stocks 30%, fixed income 20% and Bitcoin 10%.
+The portfolio has four asset classes: Brazilian stocks, US stocks, fixed income and Bitcoin. You set the target percentage of each class (for example 50%, 20%, 20% and 10%), and the targets must add up to 100%.
 
 1. Total wealth is the sum of all assets plus the contribution.
 2. The contribution goes to the class with the largest gap to its target. Anything left over moves on to the next class.
