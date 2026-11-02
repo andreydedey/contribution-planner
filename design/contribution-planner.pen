@@ -25,6 +25,1810 @@
           "fontWeight": "normal"
         }
       ]
+    },
+    {
+      "type": "frame",
+      "id": "VMJvJ",
+      "x": 920,
+      "y": 0,
+      "name": "Paletas — proposta",
+      "width": 1400,
+      "fill": "#FFFFFF",
+      "layout": "vertical",
+      "gap": 32,
+      "padding": 48,
+      "children": [
+        {
+          "type": "frame",
+          "id": "B0FLGi",
+          "name": "Cabeçalho",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 6,
+          "children": [
+            {
+              "type": "text",
+              "id": "xCOSm",
+              "name": "Título",
+              "fill": "#111111",
+              "content": "Paletas para o contribution-planner",
+              "fontFamily": "Inter",
+              "fontSize": 28,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "mJNla",
+              "name": "Subtítulo",
+              "fill": "#555555",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "Cores das classes validadas para daltonismo (pares vizinhos, modo claro e escuro). A cor de cada classe é sempre acompanhada do nome.",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "U4vt1f",
+          "name": "Colunas",
+          "width": "fill_container",
+          "gap": 24,
+          "children": [
+            {
+              "type": "frame",
+              "id": "PGXym",
+              "name": "A · Petróleo",
+              "width": "fill_container",
+              "fill": "#F6F8F9",
+              "cornerRadius": 12,
+              "stroke": "#DDE3E7",
+              "strokeWidth": 1,
+              "layout": "vertical",
+              "gap": 20,
+              "padding": 24,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "Z9QFH",
+                  "name": "Nome",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "b1RnbC",
+                      "name": "Nome",
+                      "fill": "#0F1B22",
+                      "content": "A · Petróleo",
+                      "fontFamily": "Inter",
+                      "fontSize": 18,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "jKqVU",
+                      "name": "Descrição",
+                      "fill": "#5B6770",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Primária verde-petróleo, neutros frios. Calma e confiável.",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "hygpQ",
+                  "name": "Base",
+                  "width": "fill_container",
+                  "gap": 8,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "rCKcj",
+                      "name": "primária",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 6,
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "cornerRadius": 6,
+                          "id": "X8Ika5",
+                          "name": "Amostra",
+                          "fill": "#0E6B70",
+                          "width": "fill_container",
+                          "height": 40,
+                          "stroke": "#00000014",
+                          "strokeWidth": 1
+                        },
+                        {
+                          "type": "text",
+                          "id": "F4kd9",
+                          "name": "Rótulo",
+                          "fill": "#5B6770",
+                          "content": "primária",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "TCcTE",
+                      "name": "fundo",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 6,
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "cornerRadius": 6,
+                          "id": "p3FF8",
+                          "name": "Amostra",
+                          "fill": "#F6F8F9",
+                          "width": "fill_container",
+                          "height": 40,
+                          "stroke": "#00000014",
+                          "strokeWidth": 1
+                        },
+                        {
+                          "type": "text",
+                          "id": "VQfHO",
+                          "name": "Rótulo",
+                          "fill": "#5B6770",
+                          "content": "fundo",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "fTrGX",
+                      "name": "card",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 6,
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "cornerRadius": 6,
+                          "id": "Y94JQ",
+                          "name": "Amostra",
+                          "fill": "#FFFFFF",
+                          "width": "fill_container",
+                          "height": 40,
+                          "stroke": "#00000014",
+                          "strokeWidth": 1
+                        },
+                        {
+                          "type": "text",
+                          "id": "FY0U3",
+                          "name": "Rótulo",
+                          "fill": "#5B6770",
+                          "content": "card",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "ch5kF",
+                      "name": "borda",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 6,
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "cornerRadius": 6,
+                          "id": "HQK5R",
+                          "name": "Amostra",
+                          "fill": "#DDE3E7",
+                          "width": "fill_container",
+                          "height": 40,
+                          "stroke": "#00000014",
+                          "strokeWidth": 1
+                        },
+                        {
+                          "type": "text",
+                          "id": "oLpIZ",
+                          "name": "Rótulo",
+                          "fill": "#5B6770",
+                          "content": "borda",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "pePGr",
+                      "name": "texto 2",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 6,
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "cornerRadius": 6,
+                          "id": "Yhork",
+                          "name": "Amostra",
+                          "fill": "#5B6770",
+                          "width": "fill_container",
+                          "height": 40,
+                          "stroke": "#00000014",
+                          "strokeWidth": 1
+                        },
+                        {
+                          "type": "text",
+                          "id": "P0jQQ",
+                          "name": "Rótulo",
+                          "fill": "#5B6770",
+                          "content": "texto 2",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "D2Ucho",
+                      "name": "texto",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 6,
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "cornerRadius": 6,
+                          "id": "ovEas",
+                          "name": "Amostra",
+                          "fill": "#0F1B22",
+                          "width": "fill_container",
+                          "height": 40,
+                          "stroke": "#00000014",
+                          "strokeWidth": 1
+                        },
+                        {
+                          "type": "text",
+                          "id": "m5RtZW",
+                          "name": "Rótulo",
+                          "fill": "#5B6770",
+                          "content": "texto",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "m4f2J",
+                  "name": "Classes",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 8,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "qRtEr",
+                      "name": "Ações BR",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "ellipse",
+                          "id": "OzJQ0",
+                          "name": "Ponto",
+                          "fill": "#2a78d6",
+                          "width": 10,
+                          "height": 10
+                        },
+                        {
+                          "type": "text",
+                          "id": "xFIeZ",
+                          "name": "Classe",
+                          "fill": "#0F1B22",
+                          "content": "Ações BR",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "xRY4D",
+                          "name": "Hex",
+                          "fill": "#5B6770",
+                          "content": "#2a78d6",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "FDp1x",
+                      "name": "Stocks",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "ellipse",
+                          "id": "D0NIbE",
+                          "name": "Ponto",
+                          "fill": "#008300",
+                          "width": 10,
+                          "height": 10
+                        },
+                        {
+                          "type": "text",
+                          "id": "IfTj9",
+                          "name": "Classe",
+                          "fill": "#0F1B22",
+                          "content": "Stocks",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "ZoAJm",
+                          "name": "Hex",
+                          "fill": "#5B6770",
+                          "content": "#008300",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "v2jVbl",
+                      "name": "Renda fixa",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "ellipse",
+                          "id": "v9y9M",
+                          "name": "Ponto",
+                          "fill": "#6250d6",
+                          "width": 10,
+                          "height": 10
+                        },
+                        {
+                          "type": "text",
+                          "id": "D2FvTc",
+                          "name": "Classe",
+                          "fill": "#0F1B22",
+                          "content": "Renda fixa",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "axnUn",
+                          "name": "Hex",
+                          "fill": "#5B6770",
+                          "content": "#6250d6",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "jOWHV",
+                      "name": "Bitcoin",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "ellipse",
+                          "id": "CTKch",
+                          "name": "Ponto",
+                          "fill": "#eb6834",
+                          "width": 10,
+                          "height": 10
+                        },
+                        {
+                          "type": "text",
+                          "id": "V453W",
+                          "name": "Classe",
+                          "fill": "#0F1B22",
+                          "content": "Bitcoin",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "VFZWq",
+                          "name": "Hex",
+                          "fill": "#5B6770",
+                          "content": "#eb6834",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "JkCxG",
+                  "name": "Prévia",
+                  "width": "fill_container",
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 10,
+                  "stroke": "#DDE3E7",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "gap": 16,
+                  "padding": 20,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "oNXrZ",
+                      "name": "Rótulo",
+                      "fill": "#5B6770",
+                      "content": "Alvo da carteira",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "vUMCO",
+                      "name": "Barra",
+                      "width": "fill_container",
+                      "height": 12,
+                      "gap": 2,
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "cornerRadius": [
+                            4,
+                            0,
+                            0,
+                            4
+                          ],
+                          "id": "P4IctU",
+                          "name": "Ações BR",
+                          "fill": "#2a78d6",
+                          "width": 120,
+                          "height": 12
+                        },
+                        {
+                          "type": "rectangle",
+                          "id": "t5DUW",
+                          "name": "Stocks",
+                          "fill": "#008300",
+                          "width": 90,
+                          "height": 12
+                        },
+                        {
+                          "type": "rectangle",
+                          "id": "xpnRO",
+                          "name": "Renda fixa",
+                          "fill": "#6250d6",
+                          "width": 60,
+                          "height": 12
+                        },
+                        {
+                          "type": "rectangle",
+                          "cornerRadius": [
+                            0,
+                            4,
+                            4,
+                            0
+                          ],
+                          "id": "d8IAT",
+                          "name": "Bitcoin",
+                          "fill": "#eb6834",
+                          "width": 30,
+                          "height": 12
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "SOEt8",
+                      "name": "Linha",
+                      "width": "fill_container",
+                      "stroke": "#DDE3E7",
+                      "strokeWidth": {
+                        "top": 1,
+                        "bottom": 1
+                      },
+                      "padding": [
+                        10,
+                        0
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "GZPap",
+                          "name": "Ativo",
+                          "gap": 8,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "ellipse",
+                              "id": "wGS2E",
+                              "name": "Ponto",
+                              "fill": "#2a78d6",
+                              "width": 8,
+                              "height": 8
+                            },
+                            {
+                              "type": "text",
+                              "id": "a2HLrE",
+                              "name": "Código",
+                              "fill": "#0F1B22",
+                              "content": "EGIE3",
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "M2IaZF",
+                          "name": "Selo",
+                          "fill": "#E3F1F1",
+                          "cornerRadius": 999,
+                          "padding": [
+                            3,
+                            8
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "EBVCx",
+                              "name": "Texto",
+                              "fill": "#0E6B70",
+                              "content": "Abaixo do alvo",
+                              "fontFamily": "Inter",
+                              "fontSize": 11,
+                              "fontWeight": "500"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "LCBJX",
+                          "name": "Valor",
+                          "fill": "#0F1B22",
+                          "content": "R$ 3.000,00",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "WG9IW",
+                      "name": "Botão",
+                      "width": "fill_container",
+                      "fill": "#0E6B70",
+                      "cornerRadius": 8,
+                      "padding": [
+                        10,
+                        16
+                      ],
+                      "justifyContent": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "nCe9l",
+                          "name": "Rótulo",
+                          "fill": "#FFFFFF",
+                          "content": "Calcular aporte",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "c5EvKi",
+              "name": "B · Índigo",
+              "width": "fill_container",
+              "fill": "#F7F7F8",
+              "cornerRadius": 12,
+              "stroke": "#E2E2E6",
+              "strokeWidth": 1,
+              "layout": "vertical",
+              "gap": 20,
+              "padding": 24,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "xWHBK",
+                  "name": "Nome",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "C8Oxd",
+                      "name": "Nome",
+                      "fill": "#121218",
+                      "content": "B · Índigo",
+                      "fontFamily": "Inter",
+                      "fontSize": 18,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "SmDk1",
+                      "name": "Descrição",
+                      "fill": "#5F5F6B",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Primária índigo, neutros cinza. Mais tecnológica.",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "SELIE",
+                  "name": "Base",
+                  "width": "fill_container",
+                  "gap": 8,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "uykH8",
+                      "name": "primária",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 6,
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "cornerRadius": 6,
+                          "id": "Uy8BH",
+                          "name": "Amostra",
+                          "fill": "#3B37B5",
+                          "width": "fill_container",
+                          "height": 40,
+                          "stroke": "#00000014",
+                          "strokeWidth": 1
+                        },
+                        {
+                          "type": "text",
+                          "id": "VVEYc",
+                          "name": "Rótulo",
+                          "fill": "#5F5F6B",
+                          "content": "primária",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "Mi0yt",
+                      "name": "fundo",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 6,
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "cornerRadius": 6,
+                          "id": "GVaKn",
+                          "name": "Amostra",
+                          "fill": "#F7F7F8",
+                          "width": "fill_container",
+                          "height": 40,
+                          "stroke": "#00000014",
+                          "strokeWidth": 1
+                        },
+                        {
+                          "type": "text",
+                          "id": "Ee7Ag",
+                          "name": "Rótulo",
+                          "fill": "#5F5F6B",
+                          "content": "fundo",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "r5STOa",
+                      "name": "card",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 6,
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "cornerRadius": 6,
+                          "id": "KQrIF",
+                          "name": "Amostra",
+                          "fill": "#FFFFFF",
+                          "width": "fill_container",
+                          "height": 40,
+                          "stroke": "#00000014",
+                          "strokeWidth": 1
+                        },
+                        {
+                          "type": "text",
+                          "id": "MMA2O",
+                          "name": "Rótulo",
+                          "fill": "#5F5F6B",
+                          "content": "card",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "QGDw8",
+                      "name": "borda",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 6,
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "cornerRadius": 6,
+                          "id": "xVPi3",
+                          "name": "Amostra",
+                          "fill": "#E2E2E6",
+                          "width": "fill_container",
+                          "height": 40,
+                          "stroke": "#00000014",
+                          "strokeWidth": 1
+                        },
+                        {
+                          "type": "text",
+                          "id": "wrfko",
+                          "name": "Rótulo",
+                          "fill": "#5F5F6B",
+                          "content": "borda",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "MJinY",
+                      "name": "texto 2",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 6,
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "cornerRadius": 6,
+                          "id": "KzlIG",
+                          "name": "Amostra",
+                          "fill": "#5F5F6B",
+                          "width": "fill_container",
+                          "height": 40,
+                          "stroke": "#00000014",
+                          "strokeWidth": 1
+                        },
+                        {
+                          "type": "text",
+                          "id": "RnfZX",
+                          "name": "Rótulo",
+                          "fill": "#5F5F6B",
+                          "content": "texto 2",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "KtfyW",
+                      "name": "texto",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 6,
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "cornerRadius": 6,
+                          "id": "h3tMtb",
+                          "name": "Amostra",
+                          "fill": "#121218",
+                          "width": "fill_container",
+                          "height": 40,
+                          "stroke": "#00000014",
+                          "strokeWidth": 1
+                        },
+                        {
+                          "type": "text",
+                          "id": "K4Ha6n",
+                          "name": "Rótulo",
+                          "fill": "#5F5F6B",
+                          "content": "texto",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "jdYSv",
+                  "name": "Classes",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 8,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "oiZKG",
+                      "name": "Ações BR",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "ellipse",
+                          "id": "QqGv8",
+                          "name": "Ponto",
+                          "fill": "#008300",
+                          "width": 10,
+                          "height": 10
+                        },
+                        {
+                          "type": "text",
+                          "id": "EaAYJ",
+                          "name": "Classe",
+                          "fill": "#121218",
+                          "content": "Ações BR",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "n6fF4R",
+                          "name": "Hex",
+                          "fill": "#5F5F6B",
+                          "content": "#008300",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "rhHkx",
+                      "name": "Stocks",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "ellipse",
+                          "id": "cuP9D",
+                          "name": "Ponto",
+                          "fill": "#e87ba4",
+                          "width": 10,
+                          "height": 10
+                        },
+                        {
+                          "type": "text",
+                          "id": "xOFNP",
+                          "name": "Classe",
+                          "fill": "#121218",
+                          "content": "Stocks",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "XRAUw",
+                          "name": "Hex",
+                          "fill": "#5F5F6B",
+                          "content": "#e87ba4",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "X7FlJ",
+                      "name": "Renda fixa",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "ellipse",
+                          "id": "llUn4",
+                          "name": "Ponto",
+                          "fill": "#2a78d6",
+                          "width": 10,
+                          "height": 10
+                        },
+                        {
+                          "type": "text",
+                          "id": "E43vo",
+                          "name": "Classe",
+                          "fill": "#121218",
+                          "content": "Renda fixa",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "Q5GhF",
+                          "name": "Hex",
+                          "fill": "#5F5F6B",
+                          "content": "#2a78d6",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "EBWgd",
+                      "name": "Bitcoin",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "ellipse",
+                          "id": "Vu2pw",
+                          "name": "Ponto",
+                          "fill": "#eb6834",
+                          "width": 10,
+                          "height": 10
+                        },
+                        {
+                          "type": "text",
+                          "id": "zPmFG",
+                          "name": "Classe",
+                          "fill": "#121218",
+                          "content": "Bitcoin",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "oLyyn",
+                          "name": "Hex",
+                          "fill": "#5F5F6B",
+                          "content": "#eb6834",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "yGMcg",
+                  "name": "Prévia",
+                  "width": "fill_container",
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 10,
+                  "stroke": "#E2E2E6",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "gap": 16,
+                  "padding": 20,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "lQj0T",
+                      "name": "Rótulo",
+                      "fill": "#5F5F6B",
+                      "content": "Alvo da carteira",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "iXeTN",
+                      "name": "Barra",
+                      "width": "fill_container",
+                      "height": 12,
+                      "gap": 2,
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "cornerRadius": [
+                            4,
+                            0,
+                            0,
+                            4
+                          ],
+                          "id": "mbVpc",
+                          "name": "Ações BR",
+                          "fill": "#008300",
+                          "width": 120,
+                          "height": 12
+                        },
+                        {
+                          "type": "rectangle",
+                          "id": "Odrl8",
+                          "name": "Stocks",
+                          "fill": "#e87ba4",
+                          "width": 90,
+                          "height": 12
+                        },
+                        {
+                          "type": "rectangle",
+                          "id": "S9kYjj",
+                          "name": "Renda fixa",
+                          "fill": "#2a78d6",
+                          "width": 60,
+                          "height": 12
+                        },
+                        {
+                          "type": "rectangle",
+                          "cornerRadius": [
+                            0,
+                            4,
+                            4,
+                            0
+                          ],
+                          "id": "y1VdBg",
+                          "name": "Bitcoin",
+                          "fill": "#eb6834",
+                          "width": 30,
+                          "height": 12
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "Ydi4u",
+                      "name": "Linha",
+                      "width": "fill_container",
+                      "stroke": "#E2E2E6",
+                      "strokeWidth": {
+                        "top": 1,
+                        "bottom": 1
+                      },
+                      "padding": [
+                        10,
+                        0
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "kSo8N",
+                          "name": "Ativo",
+                          "gap": 8,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "ellipse",
+                              "id": "Q2ZQSI",
+                              "name": "Ponto",
+                              "fill": "#008300",
+                              "width": 8,
+                              "height": 8
+                            },
+                            {
+                              "type": "text",
+                              "id": "ynfl7",
+                              "name": "Código",
+                              "fill": "#121218",
+                              "content": "EGIE3",
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "yxduV",
+                          "name": "Selo",
+                          "fill": "#ECEBFA",
+                          "cornerRadius": 999,
+                          "padding": [
+                            3,
+                            8
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "i9vy3",
+                              "name": "Texto",
+                              "fill": "#3B37B5",
+                              "content": "Abaixo do alvo",
+                              "fontFamily": "Inter",
+                              "fontSize": 11,
+                              "fontWeight": "500"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "djYaD",
+                          "name": "Valor",
+                          "fill": "#121218",
+                          "content": "R$ 3.000,00",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "WWab1",
+                      "name": "Botão",
+                      "width": "fill_container",
+                      "fill": "#3B37B5",
+                      "cornerRadius": 8,
+                      "padding": [
+                        10,
+                        16
+                      ],
+                      "justifyContent": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "GtNGu",
+                          "name": "Rótulo",
+                          "fill": "#FFFFFF",
+                          "content": "Calcular aporte",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "b8ACJ8",
+              "name": "C · Grafite",
+              "width": "fill_container",
+              "fill": "#FAF9F7",
+              "cornerRadius": 12,
+              "stroke": "#E6E3DE",
+              "strokeWidth": 1,
+              "layout": "vertical",
+              "gap": 20,
+              "padding": 24,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "JnHuc",
+                  "name": "Nome",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 4,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "WS7NB",
+                      "name": "Nome",
+                      "fill": "#1A1917",
+                      "content": "C · Grafite",
+                      "fontFamily": "Inter",
+                      "fontSize": 18,
+                      "fontWeight": "600"
+                    },
+                    {
+                      "type": "text",
+                      "id": "F6fRf",
+                      "name": "Descrição",
+                      "fill": "#66625B",
+                      "textGrowth": "fixed-width",
+                      "width": "fill_container",
+                      "content": "Primária grafite, neutros quentes. Sóbria, a cor fica só nos dados.",
+                      "fontFamily": "Inter",
+                      "fontSize": 13,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Qyn9R",
+                  "name": "Base",
+                  "width": "fill_container",
+                  "gap": 8,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "Q7z50x",
+                      "name": "primária",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 6,
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "cornerRadius": 6,
+                          "id": "NDGbo",
+                          "name": "Amostra",
+                          "fill": "#26241F",
+                          "width": "fill_container",
+                          "height": 40,
+                          "stroke": "#00000014",
+                          "strokeWidth": 1
+                        },
+                        {
+                          "type": "text",
+                          "id": "wI7pu",
+                          "name": "Rótulo",
+                          "fill": "#66625B",
+                          "content": "primária",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "rhRUt",
+                      "name": "fundo",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 6,
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "cornerRadius": 6,
+                          "id": "JqsG0",
+                          "name": "Amostra",
+                          "fill": "#FAF9F7",
+                          "width": "fill_container",
+                          "height": 40,
+                          "stroke": "#00000014",
+                          "strokeWidth": 1
+                        },
+                        {
+                          "type": "text",
+                          "id": "ThMqn",
+                          "name": "Rótulo",
+                          "fill": "#66625B",
+                          "content": "fundo",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "aXtgT",
+                      "name": "card",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 6,
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "cornerRadius": 6,
+                          "id": "NDbiF",
+                          "name": "Amostra",
+                          "fill": "#FFFFFF",
+                          "width": "fill_container",
+                          "height": 40,
+                          "stroke": "#00000014",
+                          "strokeWidth": 1
+                        },
+                        {
+                          "type": "text",
+                          "id": "NNO5G",
+                          "name": "Rótulo",
+                          "fill": "#66625B",
+                          "content": "card",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "jtXHf",
+                      "name": "borda",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 6,
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "cornerRadius": 6,
+                          "id": "DUsTI",
+                          "name": "Amostra",
+                          "fill": "#E6E3DE",
+                          "width": "fill_container",
+                          "height": 40,
+                          "stroke": "#00000014",
+                          "strokeWidth": 1
+                        },
+                        {
+                          "type": "text",
+                          "id": "NPY1L",
+                          "name": "Rótulo",
+                          "fill": "#66625B",
+                          "content": "borda",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "XZY7W",
+                      "name": "texto 2",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 6,
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "cornerRadius": 6,
+                          "id": "j7qyDC",
+                          "name": "Amostra",
+                          "fill": "#66625B",
+                          "width": "fill_container",
+                          "height": 40,
+                          "stroke": "#00000014",
+                          "strokeWidth": 1
+                        },
+                        {
+                          "type": "text",
+                          "id": "y9eLU",
+                          "name": "Rótulo",
+                          "fill": "#66625B",
+                          "content": "texto 2",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "uNmdN",
+                      "name": "texto",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 6,
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "cornerRadius": 6,
+                          "id": "kCIsp",
+                          "name": "Amostra",
+                          "fill": "#1A1917",
+                          "width": "fill_container",
+                          "height": 40,
+                          "stroke": "#00000014",
+                          "strokeWidth": 1
+                        },
+                        {
+                          "type": "text",
+                          "id": "XdDhP",
+                          "name": "Rótulo",
+                          "fill": "#66625B",
+                          "content": "texto",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "VtFcp",
+                  "name": "Classes",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 8,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "N0yfQ",
+                      "name": "Ações BR",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "ellipse",
+                          "id": "VBc43",
+                          "name": "Ponto",
+                          "fill": "#6250d6",
+                          "width": 10,
+                          "height": 10
+                        },
+                        {
+                          "type": "text",
+                          "id": "citdP",
+                          "name": "Classe",
+                          "fill": "#1A1917",
+                          "content": "Ações BR",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "ghQJ1",
+                          "name": "Hex",
+                          "fill": "#66625B",
+                          "content": "#6250d6",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "HlgTW",
+                      "name": "Stocks",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "ellipse",
+                          "id": "gDDvm",
+                          "name": "Ponto",
+                          "fill": "#008300",
+                          "width": 10,
+                          "height": 10
+                        },
+                        {
+                          "type": "text",
+                          "id": "YQvCf",
+                          "name": "Classe",
+                          "fill": "#1A1917",
+                          "content": "Stocks",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "zTkBB",
+                          "name": "Hex",
+                          "fill": "#66625B",
+                          "content": "#008300",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "plpUg",
+                      "name": "Renda fixa",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "ellipse",
+                          "id": "r9zOGc",
+                          "name": "Ponto",
+                          "fill": "#2a78d6",
+                          "width": 10,
+                          "height": 10
+                        },
+                        {
+                          "type": "text",
+                          "id": "dds1L",
+                          "name": "Classe",
+                          "fill": "#1A1917",
+                          "content": "Renda fixa",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "hXMBC",
+                          "name": "Hex",
+                          "fill": "#66625B",
+                          "content": "#2a78d6",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "IxqHm",
+                      "name": "Bitcoin",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "ellipse",
+                          "id": "Q7bWa",
+                          "name": "Ponto",
+                          "fill": "#eb6834",
+                          "width": 10,
+                          "height": 10
+                        },
+                        {
+                          "type": "text",
+                          "id": "i6v611",
+                          "name": "Classe",
+                          "fill": "#1A1917",
+                          "content": "Bitcoin",
+                          "fontFamily": "Inter",
+                          "fontSize": 13,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "e9q0Ra",
+                          "name": "Hex",
+                          "fill": "#66625B",
+                          "content": "#eb6834",
+                          "fontFamily": "Inter",
+                          "fontSize": 11,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "yTzDf",
+                  "name": "Prévia",
+                  "width": "fill_container",
+                  "fill": "#FFFFFF",
+                  "cornerRadius": 10,
+                  "stroke": "#E6E3DE",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "gap": 16,
+                  "padding": 20,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "m0ne7",
+                      "name": "Rótulo",
+                      "fill": "#66625B",
+                      "content": "Alvo da carteira",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "c589cT",
+                      "name": "Barra",
+                      "width": "fill_container",
+                      "height": 12,
+                      "gap": 2,
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "cornerRadius": [
+                            4,
+                            0,
+                            0,
+                            4
+                          ],
+                          "id": "d9W8ru",
+                          "name": "Ações BR",
+                          "fill": "#6250d6",
+                          "width": 120,
+                          "height": 12
+                        },
+                        {
+                          "type": "rectangle",
+                          "id": "My088",
+                          "name": "Stocks",
+                          "fill": "#008300",
+                          "width": 90,
+                          "height": 12
+                        },
+                        {
+                          "type": "rectangle",
+                          "id": "fA0D9",
+                          "name": "Renda fixa",
+                          "fill": "#2a78d6",
+                          "width": 60,
+                          "height": 12
+                        },
+                        {
+                          "type": "rectangle",
+                          "cornerRadius": [
+                            0,
+                            4,
+                            4,
+                            0
+                          ],
+                          "id": "uceo7",
+                          "name": "Bitcoin",
+                          "fill": "#eb6834",
+                          "width": 30,
+                          "height": 12
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "Y3LetM",
+                      "name": "Linha",
+                      "width": "fill_container",
+                      "stroke": "#E6E3DE",
+                      "strokeWidth": {
+                        "top": 1,
+                        "bottom": 1
+                      },
+                      "padding": [
+                        10,
+                        0
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "PVv9E",
+                          "name": "Ativo",
+                          "gap": 8,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "ellipse",
+                              "id": "hKLm5",
+                              "name": "Ponto",
+                              "fill": "#6250d6",
+                              "width": 8,
+                              "height": 8
+                            },
+                            {
+                              "type": "text",
+                              "id": "CzKOr",
+                              "name": "Código",
+                              "fill": "#1A1917",
+                              "content": "EGIE3",
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "AO6me",
+                          "name": "Selo",
+                          "fill": "#EFEDE9",
+                          "cornerRadius": 999,
+                          "padding": [
+                            3,
+                            8
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "E3mRp",
+                              "name": "Texto",
+                              "fill": "#26241F",
+                              "content": "Abaixo do alvo",
+                              "fontFamily": "Inter",
+                              "fontSize": 11,
+                              "fontWeight": "500"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "J6Dn4s",
+                          "name": "Valor",
+                          "fill": "#1A1917",
+                          "content": "R$ 3.000,00",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "dCNpB",
+                      "name": "Botão",
+                      "width": "fill_container",
+                      "fill": "#26241F",
+                      "cornerRadius": 8,
+                      "padding": [
+                        10,
+                        16
+                      ],
+                      "justifyContent": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "qq8W7",
+                          "name": "Rótulo",
+                          "fill": "#FFFFFF",
+                          "content": "Calcular aporte",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
     }
   ],
   "fileToken": "740cd71c-0cde-4577-81f6-de45f90065b1"
