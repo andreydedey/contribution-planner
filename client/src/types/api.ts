@@ -38,20 +38,10 @@ export type Plan = {
   warnings: string[]
 }
 
-export type ApiErrorCode =
-  | 'CODE_REQUIRED'
-  | 'CODE_TOO_LONG'
-  | 'INVALID_CLASS'
-  | 'VALUE_OUT_OF_RANGE'
-  | 'DUPLICATE_CODE'
-  | 'ASSET_NOT_FOUND'
-  | 'TARGET_OUT_OF_RANGE'
-  | 'TARGETS_INCOMPLETE'
-  | 'TARGETS_SUM_NOT_100'
-  | 'CONTRIBUTION_OUT_OF_RANGE'
-  | 'INVALID_REQUEST'
-
 export type ApiErrorBody = {
-  code: ApiErrorCode
+  timestamp: string
+  status: number
+  error: string
   message: string
+  path: string
 }

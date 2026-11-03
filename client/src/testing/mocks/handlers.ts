@@ -7,28 +7,31 @@ import { db } from './db'
 
 // Mock da API do design.md, com as mesmas validações e códigos de erro do server.
 
-const error = (status: number, body: ApiErrorBody) => HttpResponse.json(body, { status })
+const ERROR_NAMES: Record<number, string> = { 400: 'Bad Request', 404: 'Not Found', 409: 'Conflict' }
+
+const error = (status: number, message: string) =>
+  HttpResponse.json<ApiErrorBody>(
+    { timestamp: new Date().toISOString(), status, error: ERROR_NAMES[status], message, path: '' },
+    { status },
+  )
 
 const validClasses = new Set<string>(ASSET_CLASSES.map((info) => info.id))
 
 function validateAsset(input: AssetInput, ignoreId?: number) {
   const code = input.code?.trim().toUpperCase() ?? ''
-  if (!code) return error(400, { code: 'CODE_REQUIRED', message: 'Informe o código do ativo' })
+  if (!code) return error(400, 'Informe o código do ativo')
   if (!validClasses.has(input.assetClass)) {
-    return error(400, { code: 'INVALID_CLASS', message: 'Classe inválida' })
+    return error(400, 'Classe inválida')
   }
   if (
     !Number.isInteger(input.valueCents) ||
     input.valueCents < 0 ||
     input.valueCents > MAX_ASSET_VALUE_CENTS
   ) {
-    return error(400, {
-      code: 'VALUE_OUT_OF_RANGE',
-      message: 'Valor deve estar entre R$ 0,00 e R$ 100.000.000,00',
-    })
+    return error(400, 'Valor deve estar entre R$ 0,00 e R$ 100.000.000,00')
   }
   if (db.assets.some((a) => a.code === code && a.id !== ignoreId)) {
-    return error(409, { code: 'DUPLICATE_CODE', message: 'Ativo já cadastrado' })
+    return error(409, 'Ativo já cadastrado')
   }
   return null
 }
@@ -70,13 +73,10 @@ export const handlers = [
     if (
       targets.some((t) => !Number.isInteger(t.targetPercent) || t.targetPercent < 0 || t.targetPercent > 100)
     ) {
-      return error(400, {
-        code: 'TARGET_OUT_OF_RANGE',
-        message: 'Meta deve ser um número inteiro de 0% a 100%',
-      })
+      return error(400, 'Meta deve ser um número inteiro de 0% a 100%')
     }
     if (targets.reduce((sum, t) => sum + t.targetPercent, 0) !== 100) {
-      return error(400, { code: 'TARGETS_SUM_NOT_100', message: 'As metas devem somar 100%' })
+      return error(400, 'As metas devem somar 100%')
     }
     db.targets = targets
     return HttpResponse.json(db.targets)
@@ -89,10 +89,7 @@ export const handlers = [
       contributionCents <= 0 ||
       contributionCents > MAX_CONTRIBUTION_CENTS
     ) {
-      return error(400, {
-        code: 'CONTRIBUTION_OUT_OF_RANGE',
-        message: 'Valor do aporte deve ser maior que R$ 0,00 e até R$ 1.000.000,00',
-      })
+      return error(400, 'Valor do aporte deve ser maior que R$ 0,00 e até R$ 1.000.000,00')
     }
     return HttpResponse.json(calculatePlan(db.assets, db.targets, contributionCents))
   }),

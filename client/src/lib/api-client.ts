@@ -1,15 +1,13 @@
 import axios from 'axios'
-import type { ApiErrorBody, ApiErrorCode } from '@/types/api'
+import type { ApiErrorBody } from '@/types/api'
 
 export class ApiError extends Error {
   readonly status: number
-  readonly code?: ApiErrorCode
 
   constructor(status: number, body?: Partial<ApiErrorBody>) {
     super(body?.message ?? `Erro ${status} na API`)
     this.name = 'ApiError'
     this.status = status
-    this.code = body?.code
   }
 }
 
