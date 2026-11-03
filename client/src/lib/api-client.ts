@@ -1,3 +1,4 @@
+import axios from 'axios'
 import type { ApiErrorBody, ApiErrorCode } from '@/types/api'
 
 export class ApiError extends Error {
@@ -6,30 +7,28 @@ export class ApiError extends Error {
 
   constructor(status: number, body?: Partial<ApiErrorBody>) {
     super(body?.message ?? `Erro ${status} na API`)
+    this.name = 'ApiError'
     this.status = status
     this.code = body?.code
   }
 }
 
-async function request<T>(method: string, path: string, body?: unknown): Promise<T> {
-  const response = await fetch(`/api${path}`, {
-    method,
-    headers: body === undefined ? undefined : { 'Content-Type': 'application/json' },
-    body: body === undefined ? undefined : JSON.stringify(body),
-  })
+export const http = axios.create({ baseURL: '/api' })
 
-  if (!response.ok) {
-    const errorBody = await response.json().catch(() => undefined)
-    throw new ApiError(response.status, errorBody)
-  }
-
-  if (response.status === 204) return undefined as T
-  return response.json() as Promise<T>
-}
+// Toda resposta de erro da API vira ApiError, com o status e a mensagem da spec.
+http.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (axios.isAxiosError(error) && error.response) {
+      throw new ApiError(error.response.status, error.response.data as Partial<ApiErrorBody>)
+    }
+    throw error
+  },
+)
 
 export const api = {
-  get: <T>(path: string) => request<T>('GET', path),
-  post: <T>(path: string, body: unknown) => request<T>('POST', path, body),
-  put: <T>(path: string, body: unknown) => request<T>('PUT', path, body),
-  delete: (path: string) => request<void>('DELETE', path),
+  get: <T>(path: string) => http.get<T>(path).then((response) => response.data),
+  post: <T>(path: string, body: unknown) => http.post<T>(path, body).then((response) => response.data),
+  put: <T>(path: string, body: unknown) => http.put<T>(path, body).then((response) => response.data),
+  delete: (path: string) => http.delete(path).then(() => undefined),
 }
