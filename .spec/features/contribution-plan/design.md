@@ -86,9 +86,9 @@ O plano **não é gravado** (histórico é feature separada).
 | PUT | `/api/class-targets` | `[{assetClass, targetPercent}]` com as 4 classes → 200 | 400 soma ≠ 100, meta fora da faixa, classe faltando ou repetida |
 | POST | `/api/plans` | `{contributionCents}` → plano (abaixo) | 400 aporte fora da faixa |
 
-Erros saem como `{code, message}`, com `code` estável (`CODE_REQUIRED`, `CODE_TOO_LONG`, `INVALID_CLASS`, `VALUE_OUT_OF_RANGE`, `DUPLICATE_CODE`, `ASSET_NOT_FOUND`, `TARGET_OUT_OF_RANGE`, `TARGETS_INCOMPLETE`, `TARGETS_SUM_NOT_100`, `CONTRIBUTION_OUT_OF_RANGE`, `INVALID_REQUEST`) e `message` com o texto da spec em português. Uma classe desconhecida no JSON vira 400 `INVALID_CLASS` (AC-007), e número com casas decimais num campo inteiro vira o erro de faixa do campo (ex.: meta 12,5 → `TARGET_OUT_OF_RANGE`, AC-053), em vez de ser truncado. `TARGETS_INCOMPLETE` cobre classe faltando ou repetida no PUT das metas.
+Erros saem como `{timestamp, status, error, message, path}`, com `message` no texto da spec em português; o client usa o `status` e mostra a `message`. Uma classe desconhecida no JSON vira 400 "Classe inválida" (AC-007), e número com casas decimais num campo inteiro vira o erro de faixa do campo (ex.: meta 12,5 → "Meta deve ser um número inteiro de 0% a 100%", AC-053), em vez de ser truncado. Classe faltando ou repetida no PUT das metas vira 400 "Informe uma meta para cada uma das quatro classes".
 
-No server, cada domínio é um pacote com entidade, repositório, service, controller e DTOs (package by feature, como a documentação do Spring Boot recomenda): `asset/`, `classtarget/`, `plan/` e `common/` (erros da API).
+No server, cada domínio é um pacote (package by feature, como a documentação do Spring Boot recomenda): `asset/`, `classtarget/`, `plan/` e `common/`. Dentro de cada um, no padrão do projeto do TCC: entidade com Lombok, `XxxDTO` (record com Bean Validation, usado na entrada e na saída), `XxxMapper`, repositório, service, controller e uma exceção por erro de negócio. `common/` tem o `GlobalExceptionHandler`, o `ErrorResponse` e o `PageResponse`. Comentários no código só quando ajudam, e em inglês.
 
 Resposta do plano:
 
