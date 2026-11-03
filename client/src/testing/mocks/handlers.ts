@@ -1,7 +1,7 @@
 import { HttpResponse, http } from 'msw/http'
 import { ASSET_CLASSES } from '@/config/asset-classes'
 import { MAX_ASSET_VALUE_CENTS, MAX_CONTRIBUTION_CENTS } from '@/lib/money'
-import type { ApiErrorBody, AssetInput, ClassTarget } from '@/types/api'
+import type { ApiErrorBody, Asset, AssetInput, ClassTarget, PageResponse } from '@/types/api'
 import { calculatePlan } from './calculate-plan'
 import { db } from './db'
 
@@ -37,7 +37,19 @@ function validateAsset(input: AssetInput, ignoreId?: number) {
 }
 
 export const handlers = [
-  http.get('/api/assets', () => HttpResponse.json(db.assets)),
+  http.get('/api/assets', ({ request }) => {
+    const params = new URL(request.url).searchParams
+    const page = Number(params.get('page') ?? 0)
+    const size = Number(params.get('size') ?? 50)
+    const sorted = [...db.assets].sort((a, b) => a.code.localeCompare(b.code))
+    return HttpResponse.json<PageResponse<Asset>>({
+      content: sorted.slice(page * size, (page + 1) * size),
+      page,
+      size,
+      totalElements: sorted.length,
+      totalPages: Math.ceil(sorted.length / size),
+    })
+  }),
 
   http.post('/api/assets', async ({ request }) => {
     const input = (await request.json()) as AssetInput

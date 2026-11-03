@@ -11,6 +11,14 @@ export type Asset = {
 
 export type AssetInput = Omit<Asset, 'id'>
 
+export type PageResponse<T> = {
+  content: T[]
+  page: number
+  size: number
+  totalElements: number
+  totalPages: number
+}
+
 export type ClassTarget = {
   assetClass: AssetClass
   targetPercent: number
