@@ -66,6 +66,9 @@ export function AssetForm({ asset, onFinished }: Props) {
       // Em caso de falha o formulário continua preenchido (AC-009).
       if (error instanceof ApiError && error.status === 409) {
         form.setError('code', { message: 'Ativo já cadastrado' })
+      } else if (error instanceof ApiError && error.status === 400) {
+        // O server explica o motivo com o texto da spec (ex.: código com mais de 20 caracteres).
+        form.setError('root', { message: error.message })
       } else {
         form.setError('root', { message: SAVE_FAILED })
       }
