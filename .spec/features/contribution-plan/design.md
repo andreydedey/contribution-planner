@@ -7,18 +7,18 @@
 
 | Camada | Escolha |
 |---|---|
-| Backend | Java 25, Spring Boot 4, Maven (wrapper `mvnw`) |
+| Server | Java 25, Spring Boot 4, Maven (wrapper `mvnw`) |
 | Banco | Postgres 17 local via Docker Compose; migrações com Flyway |
-| Frontend | React + Vite + TypeScript |
-| Testes backend | JUnit 5, Spring Boot Test, Testcontainers (Postgres) |
-| Testes frontend | Vitest, React Testing Library, MSW (simula a API) |
+| Client | React + Vite + TypeScript |
+| Testes server | JUnit 5, Spring Boot Test, Testcontainers (Postgres) |
+| Testes client | Vitest, React Testing Library, MSW (simula a API) |
 
 Hospedagem fica fora deste design (ADR-002 está como Proposed). Em dev, o Vite faz proxy de `/api` para `localhost:8080`, então não há CORS local.
 
 ## Estrutura do repositório
 
 ```
-backend/
+server/
   pom.xml, mvnw
   src/main/java/dev/andreydedey/contributionplanner/
     asset/            # cadastro de ativos (entidade, repositório, controller, validação)
@@ -27,18 +27,22 @@ backend/
     common/           # tratamento de erro da API
   src/main/resources/db/migration/   # Flyway
   src/test/java/...
-frontend/
-  src/api/            # cliente HTTP tipado
-  src/lib/money.ts    # centavos <-> "R$ 1.500,00"
-  src/features/assets/  # tela Carteira
-  src/features/plan/    # tela Plano
+client/               # estrutura por tipo (o app é pequeno)
+  src/app.tsx, src/router.tsx  # provider do TanStack Query e rotas
+  src/pages/          # telas: portfolio-page (Carteira), plan-page (Plano)
+  src/components/     # componentes do app; ui/ = shadcn (gerados; fora do Biome); layout/
+  src/hooks/          # hooks da API (TanStack Query): use-assets, use-class-targets, use-create-plan
+  src/config/         # classes de ativo e caminhos das rotas
+  src/lib/api-client.ts  # fetch tipado com ApiError {code, message}
+  src/lib/money.ts       # centavos <-> "R$ 1.500,00"
+  src/testing/        # setup do Vitest e mock da API com MSW (também usado em `bun run dev:mock`)
 docker-compose.yml    # Postgres local
 scripts/run-tests.mjs # roda os dois lados e gera a prova única para o motor
 ```
 
 ## Dinheiro
 
-Todo valor trafega e é calculado em **centavos inteiros (`long` no Java, `number` inteiro no TS)**. Nada de `double`/`float` e nada de `BigDecimal`. A API usa campos `...Cents`. O frontend converte de e para o formato brasileiro só na borda (`money.ts`).
+Todo valor trafega e é calculado em **centavos inteiros (`long` no Java, `number` inteiro no TS)**. Nada de `double`/`float` e nada de `BigDecimal`. A API usa campos `...Cents`. O client converte de e para o formato brasileiro só na borda (`money.ts`).
 
 Alvos podem ter fração de centavo (ex.: R$ 10.000,00 ÷ 3 ativos). Eles são representados como fração de inteiros, sem arredondar:
 
@@ -56,7 +60,7 @@ Tabela `asset`:
 |---|---|---|
 | id | bigint identity | PK |
 | code | varchar(20) | obrigatório, único, guardado sem espaços nas pontas e em maiúsculas (ASM-009) |
-| asset_class | varchar(20) | `ACOES_BR`, `STOCKS`, `RENDA_FIXA`, `BITCOIN` (check constraint + enum Java) |
+| asset_class | varchar(20) | `BR_STOCKS`, `US_STOCKS`, `FIXED_INCOME`, `BITCOIN` (check constraint + enum Java) |
 | value_cents | bigint | 0 a 10.000.000.000 (R$ 100.000.000,00) |
 
 Tabela `class_target`:
@@ -90,10 +94,10 @@ Resposta do plano:
 {
   "totalCents": 3300000,
   "classes": [
-    {"assetClass": "ACOES_BR", "targetCents": 1320000, "currentCents": 0,
+    {"assetClass": "BR_STOCKS", "targetCents": 1320000, "currentCents": 0,
      "gapCents": 1320000, "allocatedCents": 600000}
   ],
-  "allocations": [{"code": "EGIE3", "assetClass": "ACOES_BR", "amountCents": 300000}],
+  "allocations": [{"code": "EGIE3", "assetClass": "BR_STOCKS", "amountCents": 300000}],
   "unallocatedCents": 0,
   "warnings": ["A classe Stocks está abaixo do alvo e não tem ativos cadastrados"]
 }
@@ -101,7 +105,7 @@ Resposta do plano:
 
 ## Validação
 
-O frontend valida código vazio (AC-004) e faixa de valor (AC-005, AC-020) antes de enviar, com os textos da spec, para que "nada é salvo" valha sem ida ao servidor. O backend valida as mesmas regras de novo (Bean Validation), porque a API não confia no cliente. O código repetido (AC-006) só o servidor sabe: 409 → "Ativo já cadastrado".
+O client valida código vazio (AC-004) e faixa de valor (AC-005, AC-020) antes de enviar, com os textos da spec, para que "nada é salvo" valha sem ida ao servidor. O server valida as mesmas regras de novo (Bean Validation), porque a API não confia no cliente. O código repetido (AC-006) só o servidor sabe: 409 → "Ativo já cadastrado".
 
 ## O cálculo (`plan/domain`)
 
@@ -134,9 +138,9 @@ Conferência com o AC-027: total R$ 33.000,00, Ações BR com alvo R$ 13.200,00 
 
 ### Identidade visual (ADR-003)
 
-Desenho em `design/contribution-planner.pen`; componentes shadcn/ui no código. Os tokens abaixo existem como variáveis no `.pen`, com os mesmos nomes do tema shadcn, e viram as variáveis CSS do frontend.
+Desenho em `design/contribution-planner.pen`; componentes shadcn/ui no código. Os tokens abaixo existem como variáveis no `.pen`, com os mesmos nomes do tema shadcn, e viram as variáveis CSS do client.
 
-- **Fonte**: Onest para tudo, com pesos 400, 500 e 600. No `.pen` ela é a variável `--font-primary`. No frontend vem do pacote `@fontsource-variable/onest` (servida pelo próprio app, sem chamada ao Google Fonts) e é a `--font-sans` do tema shadcn/Tailwind, herdada por todos os componentes. A Onest tem algarismos tabulares (`tnum`, verificado no arquivo da fonte), mas não por padrão: toda coluna ou lista de valores em reais usa `tabular-nums` e fica alinhada à direita.
+- **Fonte**: Onest para tudo, com pesos 400, 500 e 600. No `.pen` ela é a variável `--font-primary`. No client vem do pacote `@fontsource-variable/onest` (servida pelo próprio app, sem chamada ao Google Fonts) e é a `--font-sans` do tema shadcn/Tailwind, herdada por todos os componentes. A Onest tem algarismos tabulares (`tnum`, verificado no arquivo da fonte), mas não por padrão: toda coluna ou lista de valores em reais usa `tabular-nums` e fica alinhada à direita.
 - **Paleta**: "A · Petróleo", com primária verde-petróleo e neutros frios (escolhida pelo usuário: "Gostei da paleta A").
 
 | Token | Claro | Escuro |
@@ -157,9 +161,9 @@ Cor fixa por classe, sempre ao lado do nome da classe (nunca só a cor). Elas fo
 
 | Classe | Token | Claro | Escuro |
 |---|---|---|---|
-| Ações BR | `--class-acoes-br` | `#2a78d6` | `#3987e5` |
-| Stocks | `--class-stocks` | `#008300` | `#008300` |
-| Renda fixa | `--class-renda-fixa` | `#6250d6` | `#9085e9` |
+| Ações BR | `--class-br-stocks` | `#2a78d6` | `#3987e5` |
+| Stocks | `--class-us-stocks` | `#008300` | `#008300` |
+| Renda fixa | `--class-fixed-income` | `#6250d6` | `#9085e9` |
 | Bitcoin | `--class-bitcoin` | `#eb6834` | `#d95926` |
 
 "Abaixo do alvo" usa `--accent` com texto `--primary`; avisos (AC-025, AC-031) usam `--color-warning` com ícone; erros usam `--destructive`.
@@ -175,7 +179,7 @@ Cor fixa por classe, sempre ao lado do nome da classe (nunca só a cor). Elas fo
 |---|---|
 | Unitário do cálculo (JUnit, sem Spring) | AC-010 a AC-018, AC-022 a AC-031, AC-054, AC-055 |
 | Integração da API (Spring Boot + Testcontainers) | AC-001 (persistência), AC-003 (removido sai do plano), AC-005, AC-006, AC-007 (400), AC-020, AC-051 (persistência), AC-052, AC-053 (400), AC-054 (plano usa as metas salvas), AC-056 |
-| Frontend (Vitest + RTL + MSW) | AC-001, AC-002, AC-003, AC-004, AC-005, AC-006, AC-007, AC-008, AC-009, AC-019, AC-020, AC-021, AC-025, AC-031, AC-051, AC-052, AC-053, AC-056 |
+| Client (Vitest + RTL + MSW) | AC-001, AC-002, AC-003, AC-004, AC-005, AC-006, AC-007, AC-008, AC-009, AC-019, AC-020, AC-021, AC-025, AC-031, AC-051, AC-052, AC-053, AC-056 |
 
 O AC-018 é testado com várias carteiras e aportes gerados a partir de uma semente fixa (reproduzível), conferindo a invariante em todas.
 
@@ -193,8 +197,8 @@ O motor só lê `tap`, `vitest-json` ou `jest-json`, com **um** `testCommand`, e
   "testCommand": "node scripts/run-tests.mjs",
   "reporter": "jest-json",
   "reporterOutputFile": ".spec/verification/raw.json",
-  "testGlobs": ["backend/src/test/**", "frontend/src/**/*.test.ts", "frontend/src/**/*.test.tsx"],
-  "srcGlobs": ["backend/src/main/**", "frontend/src/**"]
+  "testGlobs": ["server/src/test/**", "client/src/**/*.test.ts", "client/src/**/*.test.tsx"],
+  "srcGlobs": ["server/src/main/**", "client/src/**"]
 }
 ```
 
@@ -204,9 +208,9 @@ Os testes JUnit são escritos à mão, já que o scaffold não gera Java.
 
 A constituição atual verifica `src/**/*.js`, que não existe nesta stack. Proposta:
 
-- **P-002** [RECOMENDADO] Segredos nunca em código: trocar o glob para `backend/src/main/**` e `frontend/src/**`.
-- **P-003** [DEVE] Dinheiro só em centavos `long`: proibido `\b(double|float|Double|Float|BigDecimal)\b` em `backend/src/main/java/**/plan/**/*.java` e `backend/src/main/java/**/asset/**/*.java`.
-- **P-004** [DEVE] O cálculo não depende de framework: proibido `import org\.springframework|import jakarta\.persistence` em `backend/src/main/java/**/plan/domain/**`.
+- **P-002** [RECOMENDADO] Segredos nunca em código: trocar o glob para `server/src/main/**` e `client/src/**`.
+- **P-003** [DEVE] Dinheiro só em centavos `long`: proibido `\b(double|float|Double|Float|BigDecimal)\b` em `server/src/main/java/**/plan/**/*.java` e `server/src/main/java/**/asset/**/*.java`.
+- **P-004** [DEVE] O cálculo não depende de framework: proibido `import org\.springframework|import jakarta\.persistence` em `server/src/main/java/**/plan/domain/**`.
 
 ## Suposições
 
