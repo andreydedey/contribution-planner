@@ -78,7 +78,7 @@ O plano **não é gravado** (histórico é feature separada).
 
 | Método | Caminho | Corpo / resposta | Erros |
 |---|---|---|---|
-| GET | `/api/assets` | `[{id, code, assetClass, valueCents}]` | — |
+| GET | `/api/assets?assetClass=&code=&page=&size=&sort=` | `{content: [{id, code, assetClass, valueCents}], page, size, totalElements, totalPages}`; padrão `size=50`, `sort=code`. O client carrega todas as páginas, porque os totais e o plano precisam da carteira inteira | 400 classe ou ordenação inválida |
 | POST | `/api/assets` | `{code, assetClass, valueCents}` → 201 + ativo | 400 validação, 409 código repetido |
 | PUT | `/api/assets/{id}` | igual ao POST → 200 | 400, 404, 409 |
 | DELETE | `/api/assets/{id}` | 204 | 404 |
