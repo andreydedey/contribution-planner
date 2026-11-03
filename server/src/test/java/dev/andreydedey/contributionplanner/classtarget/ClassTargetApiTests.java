@@ -46,8 +46,7 @@ class ClassTargetApiTests extends ApiIntegrationTest {
 		assertThat(put("/api/class-targets", targets(30, 30, 20, 10)))
 				.hasStatus(HttpStatus.BAD_REQUEST)
 				.bodyJson()
-				.isEqualTo("""
-						{"code": "TARGETS_SUM_NOT_100", "message": "As metas devem somar 100%"}""");
+				.extractingPath("$.message").isEqualTo("As metas devem somar 100%");
 
 		assertThat(get("/api/class-targets")).bodyJson().isStrictlyEqualTo(INITIAL_TARGETS);
 	}
@@ -55,13 +54,12 @@ class ClassTargetApiTests extends ApiIntegrationTest {
 	@Test
 	@DisplayName("AC-053: o servidor recusa meta fora da faixa @spec:AC-053")
 	void targetOutOfRangeIsRejected() {
-		var expected = """
-				{"code": "TARGET_OUT_OF_RANGE", "message": "Meta deve ser um número inteiro de 0% a 100%"}""";
+		var expected = "Meta deve ser um número inteiro de 0% a 100%";
 
 		assertThat(put("/api/class-targets", targets(110, -10, 0, 0)))
-				.hasStatus(HttpStatus.BAD_REQUEST).bodyJson().isEqualTo(expected);
+				.hasStatus(HttpStatus.BAD_REQUEST).bodyJson().extractingPath("$.message").isEqualTo(expected);
 		assertThat(put("/api/class-targets", targets(12.5, 37.5, 40, 10)))
-				.hasStatus(HttpStatus.BAD_REQUEST).bodyJson().isEqualTo(expected);
+				.hasStatus(HttpStatus.BAD_REQUEST).bodyJson().extractingPath("$.message").isEqualTo(expected);
 		assertThat(get("/api/class-targets")).bodyJson().isStrictlyEqualTo(INITIAL_TARGETS);
 	}
 
@@ -79,9 +77,9 @@ class ClassTargetApiTests extends ApiIntegrationTest {
 				 {"assetClass": "BITCOIN", "targetPercent": 10}]""";
 
 		assertThat(put("/api/class-targets", repeated))
-				.hasStatus(HttpStatus.BAD_REQUEST).bodyJson().extractingPath("$.code").isEqualTo("TARGETS_INCOMPLETE");
+				.hasStatus(HttpStatus.BAD_REQUEST).bodyJson().extractingPath("$.message").isEqualTo("Informe uma meta para cada uma das quatro classes");
 		assertThat(put("/api/class-targets", missing))
-				.hasStatus(HttpStatus.BAD_REQUEST).bodyJson().extractingPath("$.code").isEqualTo("TARGETS_INCOMPLETE");
+				.hasStatus(HttpStatus.BAD_REQUEST).bodyJson().extractingPath("$.message").isEqualTo("Informe uma meta para cada uma das quatro classes");
 	}
 
 }

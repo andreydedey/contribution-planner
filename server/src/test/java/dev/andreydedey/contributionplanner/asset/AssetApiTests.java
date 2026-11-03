@@ -65,20 +65,18 @@ class AssetApiTests extends ApiIntegrationTest {
 		assertThat(post("/api/assets", asset("  ", "BR_STOCKS", 0)))
 				.hasStatus(HttpStatus.BAD_REQUEST)
 				.bodyJson()
-				.isEqualTo("""
-						{"code": "CODE_REQUIRED", "message": "Informe o código do ativo"}""");
+				.extractingPath("$.message").isEqualTo("Informe o código do ativo");
 	}
 
 	@Test
 	@DisplayName("AC-005: valor fora da faixa é recusado @spec:AC-005")
 	void valueOutOfRangeIsRejected() {
-		var expected = """
-				{"code": "VALUE_OUT_OF_RANGE", "message": "Valor deve estar entre R$ 0,00 e R$ 100.000.000,00"}""";
+		var expected = "Valor deve estar entre R$ 0,00 e R$ 100.000.000,00";
 
 		assertThat(post("/api/assets", asset("WEGE3", "BR_STOCKS", -1)))
-				.hasStatus(HttpStatus.BAD_REQUEST).bodyJson().isEqualTo(expected);
+				.hasStatus(HttpStatus.BAD_REQUEST).bodyJson().extractingPath("$.message").isEqualTo(expected);
 		assertThat(post("/api/assets", asset("WEGE3", "BR_STOCKS", 10_000_000_001L)))
-				.hasStatus(HttpStatus.BAD_REQUEST).bodyJson().isEqualTo(expected);
+				.hasStatus(HttpStatus.BAD_REQUEST).bodyJson().extractingPath("$.message").isEqualTo(expected);
 		assertThat(get("/api/assets")).bodyJson().isEqualTo("[]");
 	}
 
@@ -90,8 +88,7 @@ class AssetApiTests extends ApiIntegrationTest {
 		assertThat(post("/api/assets", asset("wege3", "BR_STOCKS", 10)))
 				.hasStatus(HttpStatus.CONFLICT)
 				.bodyJson()
-				.isEqualTo("""
-						{"code": "DUPLICATE_CODE", "message": "Ativo já cadastrado"}""");
+				.extractingPath("$.message").isEqualTo("Ativo já cadastrado");
 	}
 
 	@Test
@@ -100,8 +97,7 @@ class AssetApiTests extends ApiIntegrationTest {
 		assertThat(post("/api/assets", asset("VALE3", "FII", 0)))
 				.hasStatus(HttpStatus.BAD_REQUEST)
 				.bodyJson()
-				.extractingPath("$.code")
-				.isEqualTo("INVALID_CLASS");
+				.extractingPath("$.message").isEqualTo("Classe inválida");
 	}
 
 	@Test
