@@ -10,10 +10,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.web.servlet.assertj.MockMvcTester;
 import org.springframework.test.web.servlet.assertj.MvcTestResult;
 
-/**
- * Base dos testes de integração da API: Postgres real (Testcontainers), migrações do Flyway e MockMvc.
- * Cada teste começa sem ativos e com as metas iniciais.
- */
 @SpringBootTest
 @AutoConfigureMockMvc
 @Import(TestcontainersConfiguration.class)

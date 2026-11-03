@@ -1,6 +1,3 @@
--- Ativos da carteira e metas por classe (design.md da contribution-plan).
--- Valores em centavos inteiros; as quatro classes são fixas.
-
 create table asset (
     id          bigint generated always as identity primary key,
     code        varchar(20) not null unique,
@@ -17,7 +14,7 @@ create table class_target (
         check (target_percent between 0 and 100)
 );
 
--- Metas iniciais (AC-056, ASM-014).
+-- Initial targets.
 insert into class_target (asset_class, target_percent) values
     ('BR_STOCKS', 40),
     ('US_STOCKS', 30),
