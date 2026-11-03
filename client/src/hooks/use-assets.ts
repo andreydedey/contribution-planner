@@ -11,31 +11,32 @@ export function useAssets() {
   })
 }
 
-function useInvalidateAssets() {
+// Há uma só consulta de ativos, compartilhada pela Carteira e pelo Plano: refazê-la já atualiza as duas telas.
+function useRefetchAssets() {
   const queryClient = useQueryClient()
-  return () => queryClient.invalidateQueries({ queryKey: assetsQueryKey })
+  return () => queryClient.refetchQueries({ queryKey: assetsQueryKey })
 }
 
 export function useCreateAsset() {
-  const invalidate = useInvalidateAssets()
+  const refetchAssets = useRefetchAssets()
   return useMutation({
     mutationFn: (input: AssetInput) => api.post<Asset>('/assets', input),
-    onSuccess: invalidate,
+    onSuccess: refetchAssets,
   })
 }
 
 export function useUpdateAsset() {
-  const invalidate = useInvalidateAssets()
+  const refetchAssets = useRefetchAssets()
   return useMutation({
     mutationFn: ({ id, ...input }: Asset) => api.put<Asset>(`/assets/${id}`, input),
-    onSuccess: invalidate,
+    onSuccess: refetchAssets,
   })
 }
 
 export function useDeleteAsset() {
-  const invalidate = useInvalidateAssets()
+  const refetchAssets = useRefetchAssets()
   return useMutation({
     mutationFn: (id: number) => api.delete(`/assets/${id}`),
-    onSuccess: invalidate,
+    onSuccess: refetchAssets,
   })
 }
