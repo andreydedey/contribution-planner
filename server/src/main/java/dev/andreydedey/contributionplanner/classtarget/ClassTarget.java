@@ -11,10 +11,15 @@ import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
 import dev.andreydedey.contributionplanner.asset.AssetClass;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-/** Meta percentual de uma classe; existe sempre uma linha por classe (migração V1). */
 @Entity
 @Table(name = "class_target")
+@Getter
+@Setter
+@NoArgsConstructor
 public class ClassTarget {
 
 	@Id
@@ -25,20 +30,5 @@ public class ClassTarget {
 	@JdbcTypeCode(SqlTypes.SMALLINT)
 	@Column(name = "target_percent", nullable = false)
 	private int targetPercent;
-
-	protected ClassTarget() {
-	}
-
-	public AssetClass getAssetClass() {
-		return assetClass;
-	}
-
-	public int getTargetPercent() {
-		return targetPercent;
-	}
-
-	void setTargetPercent(int targetPercent) {
-		this.targetPercent = targetPercent;
-	}
 
 }

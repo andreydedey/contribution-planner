@@ -5,6 +5,7 @@ import java.util.List;
 import jakarta.validation.Valid;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,39 +13,36 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/api/assets")
-class AssetController {
+@RequiredArgsConstructor
+public class AssetController {
 
-	private final AssetService service;
-
-	AssetController(AssetService service) {
-		this.service = service;
-	}
+	private final AssetService assetService;
 
 	@GetMapping
-	List<AssetResponse> list() {
-		return service.findAll().stream().map(AssetResponse::from).toList();
+	public List<AssetDTO> list() {
+		return assetService.list();
 	}
 
 	@PostMapping
-	@ResponseStatus(HttpStatus.CREATED)
-	AssetResponse create(@Valid @RequestBody AssetRequest request) {
-		return AssetResponse.from(service.create(request));
+	public ResponseEntity<AssetDTO> create(@Valid @RequestBody AssetDTO request) {
+		return ResponseEntity.status(HttpStatus.CREATED).body(assetService.create(request));
 	}
 
 	@PutMapping("/{id}")
-	AssetResponse update(@PathVariable long id, @Valid @RequestBody AssetRequest request) {
-		return AssetResponse.from(service.update(id, request));
+	public ResponseEntity<AssetDTO> update(@PathVariable long id, @Valid @RequestBody AssetDTO request) {
+		return ResponseEntity.ok(assetService.update(id, request));
 	}
 
 	@DeleteMapping("/{id}")
-	@ResponseStatus(HttpStatus.NO_CONTENT)
-	void delete(@PathVariable long id) {
-		service.delete(id);
+	public ResponseEntity<Void> delete(@PathVariable long id) {
+		assetService.delete(id);
+		return ResponseEntity.noContent().build();
 	}
 
 }

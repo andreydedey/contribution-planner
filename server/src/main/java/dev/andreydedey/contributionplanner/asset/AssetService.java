@@ -3,71 +3,69 @@ package dev.andreydedey.contributionplanner.asset;
 import java.util.List;
 
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import dev.andreydedey.contributionplanner.common.ApiErrorCode;
-import dev.andreydedey.contributionplanner.common.ApiException;
+import lombok.RequiredArgsConstructor;
 
 @Service
+@RequiredArgsConstructor
 public class AssetService {
 
-	private final AssetRepository repository;
-
-	AssetService(AssetRepository repository) {
-		this.repository = repository;
-	}
+	private final AssetRepository assetRepository;
 
 	@Transactional(readOnly = true)
-	public List<Asset> findAll() {
-		return repository.findAllByOrderByCodeAsc();
+	public List<AssetDTO> list() {
+		return assetRepository.findAllByOrderByCodeAsc().stream().map(AssetMapper::toDTO).toList();
 	}
 
 	@Transactional
-	public Asset create(AssetRequest request) {
-		String code = request.normalizedCode();
-		if (repository.existsByCode(code)) {
-			throw duplicateCode();
+	public AssetDTO create(AssetDTO request) {
+		String code = normalizeCode(request.code());
+		if (assetRepository.existsByCode(code)) {
+			throw new DuplicateAssetCodeException();
 		}
-		return saveOrFailOnDuplicate(new Asset(code, request.assetClass(), request.valueCents()));
+		Asset asset = Asset.builder()
+				.code(code)
+				.assetClass(request.assetClass())
+				.valueCents(request.valueCents())
+				.build();
+		return AssetMapper.toDTO(save(asset));
 	}
 
 	@Transactional
-	public Asset update(long id, AssetRequest request) {
-		Asset asset = repository.findById(id).orElseThrow(AssetService::notFound);
-		String code = request.normalizedCode();
-		if (repository.existsByCodeAndIdNot(code, id)) {
-			throw duplicateCode();
+	public AssetDTO update(long id, AssetDTO request) {
+		Asset asset = assetRepository.findById(id).orElseThrow(() -> new AssetNotFoundException(id));
+		String code = normalizeCode(request.code());
+		if (assetRepository.existsByCodeAndIdNot(code, id)) {
+			throw new DuplicateAssetCodeException();
 		}
-		asset.update(code, request.assetClass(), request.valueCents());
-		return saveOrFailOnDuplicate(asset);
+		asset.setCode(code);
+		asset.setAssetClass(request.assetClass());
+		asset.setValueCents(request.valueCents());
+		return AssetMapper.toDTO(save(asset));
 	}
 
 	@Transactional
 	public void delete(long id) {
-		if (!repository.existsById(id)) {
-			throw notFound();
+		if (!assetRepository.existsById(id)) {
+			throw new AssetNotFoundException(id);
 		}
-		repository.deleteById(id);
+		assetRepository.deleteById(id);
 	}
 
-	/** A constraint única do banco cobre duas gravações simultâneas do mesmo código. */
-	private Asset saveOrFailOnDuplicate(Asset asset) {
+	private static String normalizeCode(String code) {
+		return code.strip().toUpperCase();
+	}
+
+	// The unique constraint still catches two concurrent saves of the same code.
+	private Asset save(Asset asset) {
 		try {
-			return repository.saveAndFlush(asset);
+			return assetRepository.saveAndFlush(asset);
 		}
-		catch (DataIntegrityViolationException exception) {
-			throw duplicateCode();
+		catch (DataIntegrityViolationException ex) {
+			throw new DuplicateAssetCodeException();
 		}
-	}
-
-	private static ApiException duplicateCode() {
-		return new ApiException(HttpStatus.CONFLICT, ApiErrorCode.DUPLICATE_CODE);
-	}
-
-	private static ApiException notFound() {
-		return new ApiException(HttpStatus.NOT_FOUND, ApiErrorCode.ASSET_NOT_FOUND);
 	}
 
 }

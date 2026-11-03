@@ -7,65 +7,59 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import dev.andreydedey.contributionplanner.asset.AssetClass;
-import dev.andreydedey.contributionplanner.common.ApiErrorCode;
-import dev.andreydedey.contributionplanner.common.ApiException;
+import lombok.RequiredArgsConstructor;
 
 @Service
+@RequiredArgsConstructor
 public class ClassTargetService {
 
-	private final ClassTargetRepository repository;
+	private static final String TARGET_OUT_OF_RANGE = "Meta deve ser um número inteiro de 0% a 100%";
+	private static final String TARGETS_INCOMPLETE = "Informe uma meta para cada uma das quatro classes";
+	private static final String TARGETS_SUM_NOT_100 = "As metas devem somar 100%";
 
-	ClassTargetService(ClassTargetRepository repository) {
-		this.repository = repository;
-	}
+	private final ClassTargetRepository classTargetRepository;
 
-	/** As quatro metas, na ordem das classes. */
 	@Transactional(readOnly = true)
-	public List<ClassTarget> findAll() {
-		return repository.findAll().stream()
+	public List<ClassTargetDTO> list() {
+		return classTargetRepository.findAll().stream()
 				.sorted(Comparator.comparing(ClassTarget::getAssetClass))
+				.map(ClassTargetMapper::toDTO)
 				.toList();
 	}
 
-	/** Troca as quatro metas de uma vez; nada é gravado se alguma regra falhar (AC-052, AC-053). */
 	@Transactional
-	public List<ClassTarget> replaceAll(List<ClassTargetDto> targets) {
+	public List<ClassTargetDTO> replaceAll(List<ClassTargetDTO> targets) {
 		validate(targets);
-		Map<AssetClass, Integer> percentByClass = targets.stream()
-				.collect(Collectors.toMap(ClassTargetDto::assetClass, ClassTargetDto::targetPercent));
-		Map<AssetClass, ClassTarget> saved = repository.findAll().stream()
+		Map<AssetClass, ClassTarget> saved = classTargetRepository.findAll().stream()
 				.collect(Collectors.toMap(ClassTarget::getAssetClass, Function.identity()));
-		percentByClass.forEach((assetClass, percent) -> saved.get(assetClass).setTargetPercent(percent));
-		return findAll();
+		targets.forEach(target -> saved.get(target.assetClass()).setTargetPercent(target.targetPercent()));
+		return list();
 	}
 
-	private static void validate(List<ClassTargetDto> targets) {
+	private static void validate(List<ClassTargetDTO> targets) {
 		if (targets == null) {
-			throw badRequest(ApiErrorCode.TARGETS_INCOMPLETE);
+			throw new InvalidClassTargetsException(TARGETS_INCOMPLETE);
 		}
-		boolean outOfRange = targets.stream()
-				.anyMatch(t -> t == null || t.targetPercent() == null || t.targetPercent() < 0 || t.targetPercent() > 100);
+		boolean outOfRange = targets.stream().anyMatch(target -> target == null
+				|| target.targetPercent() == null
+				|| target.targetPercent() < 0
+				|| target.targetPercent() > 100);
 		if (outOfRange) {
-			throw badRequest(ApiErrorCode.TARGET_OUT_OF_RANGE);
+			throw new InvalidClassTargetsException(TARGET_OUT_OF_RANGE);
 		}
 		EnumSet<AssetClass> classes = EnumSet.noneOf(AssetClass.class);
 		boolean complete = targets.size() == AssetClass.values().length
-				&& targets.stream().allMatch(t -> t.assetClass() != null && classes.add(t.assetClass()));
+				&& targets.stream().allMatch(target -> target.assetClass() != null && classes.add(target.assetClass()));
 		if (!complete) {
-			throw badRequest(ApiErrorCode.TARGETS_INCOMPLETE);
+			throw new InvalidClassTargetsException(TARGETS_INCOMPLETE);
 		}
-		if (targets.stream().mapToInt(ClassTargetDto::targetPercent).sum() != 100) {
-			throw badRequest(ApiErrorCode.TARGETS_SUM_NOT_100);
+		if (targets.stream().mapToInt(ClassTargetDTO::targetPercent).sum() != 100) {
+			throw new InvalidClassTargetsException(TARGETS_SUM_NOT_100);
 		}
-	}
-
-	private static ApiException badRequest(ApiErrorCode code) {
-		return new ApiException(HttpStatus.BAD_REQUEST, code);
 	}
 
 }

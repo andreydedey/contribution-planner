@@ -9,8 +9,19 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 @Entity
 @Table(name = "asset")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Asset {
 
 	@Id
@@ -24,37 +35,7 @@ public class Asset {
 	@Column(name = "asset_class", nullable = false, length = 20)
 	private AssetClass assetClass;
 
-	/** Valor atual em centavos (nunca ponto flutuante). */
 	@Column(name = "value_cents", nullable = false)
 	private long valueCents;
-
-	protected Asset() {
-	}
-
-	public Asset(String code, AssetClass assetClass, long valueCents) {
-		update(code, assetClass, valueCents);
-	}
-
-	public void update(String code, AssetClass assetClass, long valueCents) {
-		this.code = code;
-		this.assetClass = assetClass;
-		this.valueCents = valueCents;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public String getCode() {
-		return code;
-	}
-
-	public AssetClass getAssetClass() {
-		return assetClass;
-	}
-
-	public long getValueCents() {
-		return valueCents;
-	}
 
 }
