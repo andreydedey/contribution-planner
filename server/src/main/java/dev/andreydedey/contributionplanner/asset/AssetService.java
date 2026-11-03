@@ -1,8 +1,9 @@
 package dev.andreydedey.contributionplanner.asset;
 
-import java.util.List;
-
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,8 +16,15 @@ public class AssetService {
 	private final AssetRepository assetRepository;
 
 	@Transactional(readOnly = true)
-	public List<AssetDTO> list() {
-		return assetRepository.findAllByOrderByCodeAsc().stream().map(AssetMapper::toDTO).toList();
+	public Page<AssetDTO> list(AssetClass assetClass, String code, Pageable pageable) {
+		Specification<Asset> spec = Specification.unrestricted();
+		if (assetClass != null) {
+			spec = spec.and(AssetSpecification.hasAssetClass(assetClass));
+		}
+		if (code != null && !code.isBlank()) {
+			spec = spec.and(AssetSpecification.codeContains(code));
+		}
+		return assetRepository.findBy(spec, query -> query.as(AssetDTO.class).page(pageable));
 	}
 
 	@Transactional

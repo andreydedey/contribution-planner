@@ -35,7 +35,7 @@ class AssetApiTests extends ApiIntegrationTest {
 				.hasStatusOk()
 				.bodyJson()
 				.isLenientlyEqualTo("""
-						[{"code": "WEGE3", "assetClass": "BR_STOCKS", "valueCents": 100000}]""");
+						{"content": [{"code": "WEGE3", "assetClass": "BR_STOCKS", "valueCents": 100000}], "totalElements": 1}""");
 	}
 
 	@Test
@@ -45,7 +45,7 @@ class AssetApiTests extends ApiIntegrationTest {
 
 		assertThat(put("/api/assets/" + id, asset("WEGE3", "BR_STOCKS", 150_000))).hasStatusOk();
 
-		assertThat(get("/api/assets")).bodyJson().extractingPath("$[0].valueCents").isEqualTo(150_000);
+		assertThat(get("/api/assets")).bodyJson().extractingPath("$.content[0].valueCents").isEqualTo(150_000);
 	}
 
 	@Test
@@ -55,7 +55,7 @@ class AssetApiTests extends ApiIntegrationTest {
 
 		assertThat(delete("/api/assets/" + id)).hasStatus(HttpStatus.NO_CONTENT);
 
-		assertThat(get("/api/assets")).bodyJson().isEqualTo("[]");
+		assertThat(get("/api/assets")).bodyJson().extractingPath("$.totalElements").isEqualTo(0);
 		assertThat(delete("/api/assets/" + id)).hasStatus(HttpStatus.NOT_FOUND);
 	}
 
@@ -77,7 +77,7 @@ class AssetApiTests extends ApiIntegrationTest {
 				.hasStatus(HttpStatus.BAD_REQUEST).bodyJson().extractingPath("$.message").isEqualTo(expected);
 		assertThat(post("/api/assets", asset("WEGE3", "BR_STOCKS", 10_000_000_001L)))
 				.hasStatus(HttpStatus.BAD_REQUEST).bodyJson().extractingPath("$.message").isEqualTo(expected);
-		assertThat(get("/api/assets")).bodyJson().isEqualTo("[]");
+		assertThat(get("/api/assets")).bodyJson().extractingPath("$.totalElements").isEqualTo(0);
 	}
 
 	@Test
@@ -108,6 +108,42 @@ class AssetApiTests extends ApiIntegrationTest {
 
 		assertThat(put("/api/assets/" + id, asset("WEGE3", "BR_STOCKS", 0))).hasStatus(HttpStatus.CONFLICT);
 		assertThat(put("/api/assets/999999", asset("PETR3", "BR_STOCKS", 0))).hasStatus(HttpStatus.NOT_FOUND);
+	}
+
+	@Test
+	@DisplayName("A lista de ativos é paginada e ordenada pelo código")
+	void listIsPaginatedAndSortedByCode() throws Exception {
+		createAsset("WEGE3", "BR_STOCKS", 0);
+		createAsset("EGIE3", "BR_STOCKS", 0);
+		createAsset("ITUB3", "BR_STOCKS", 0);
+
+		assertThat(get("/api/assets?page=0&size=2"))
+				.hasStatusOk()
+				.bodyJson()
+				.isLenientlyEqualTo("""
+						{"content": [{"code": "EGIE3"}, {"code": "ITUB3"}],
+						 "page": 0, "size": 2, "totalElements": 3, "totalPages": 2}""");
+		assertThat(get("/api/assets?page=1&size=2"))
+				.bodyJson()
+				.isLenientlyEqualTo("""
+						{"content": [{"code": "WEGE3"}], "page": 1}""");
+	}
+
+	@Test
+	@DisplayName("A lista de ativos filtra por classe e por código")
+	void listFiltersByClassAndCode() throws Exception {
+		createAsset("WEGE3", "BR_STOCKS", 0);
+		createAsset("BTC", "BITCOIN", 0);
+
+		assertThat(get("/api/assets?assetClass=BITCOIN"))
+				.bodyJson()
+				.isLenientlyEqualTo("""
+						{"content": [{"code": "BTC"}], "totalElements": 1}""");
+		assertThat(get("/api/assets?code=weg"))
+				.bodyJson()
+				.isLenientlyEqualTo("""
+						{"content": [{"code": "WEGE3"}], "totalElements": 1}""");
+		assertThat(get("/api/assets?assetClass=FII")).hasStatus(HttpStatus.BAD_REQUEST);
 	}
 
 }

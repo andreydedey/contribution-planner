@@ -4,6 +4,7 @@ import java.util.Map;
 
 import jakarta.servlet.http.HttpServletRequest;
 
+import org.springframework.data.core.PropertyReferenceException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -11,6 +12,7 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 import dev.andreydedey.contributionplanner.asset.AssetNotFoundException;
@@ -55,6 +57,11 @@ public class GlobalExceptionHandler {
 			message = UNREADABLE_FIELD_MESSAGES.getOrDefault(field, INVALID_REQUEST);
 		}
 		return buildResponse(HttpStatus.BAD_REQUEST, message, request);
+	}
+
+	@ExceptionHandler({ MethodArgumentTypeMismatchException.class, PropertyReferenceException.class })
+	public ResponseEntity<ErrorResponse> handleInvalidParameter(Exception ex, HttpServletRequest request) {
+		return buildResponse(HttpStatus.BAD_REQUEST, INVALID_REQUEST, request);
 	}
 
 	@ExceptionHandler({ AssetNotFoundException.class, NoResourceFoundException.class })

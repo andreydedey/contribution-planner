@@ -1,9 +1,10 @@
 package dev.andreydedey.contributionplanner.asset;
 
-import java.util.List;
-
 import jakarta.validation.Valid;
 
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,8 +14,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import dev.andreydedey.contributionplanner.common.PageResponse;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -25,8 +28,11 @@ public class AssetController {
 	private final AssetService assetService;
 
 	@GetMapping
-	public List<AssetDTO> list() {
-		return assetService.list();
+	public PageResponse<AssetDTO> list(
+			@RequestParam(required = false) AssetClass assetClass,
+			@RequestParam(required = false) String code,
+			@PageableDefault(size = 50, sort = "code", direction = Sort.Direction.ASC) Pageable pageable) {
+		return PageResponse.from(assetService.list(assetClass, code, pageable));
 	}
 
 	@PostMapping
