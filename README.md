@@ -42,11 +42,9 @@ Money is always stored as integer cents (`long`), never as floating point.
 Requirements: Java 25, Bun and Docker.
 
 ```sh
-# Database (PostgreSQL 17 on port 5433; set DB_PORT to change it)
-docker compose up -d
-
-# Server on http://localhost:8080
-cd server && ./mvnw spring-boot:run
+# Server on http://localhost:8080, with PostgreSQL 17 in Docker on port 5433
+# (set DB_PORT to change it; variables in a .env file at the root are loaded)
+./run
 
 # Client on http://localhost:5173 (proxies /api to the server)
 cd client && bun install && bun run dev
