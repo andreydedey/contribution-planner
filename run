@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+cd "$(dirname "$0")"
+
+if [[ -x /usr/libexec/java_home ]]; then
+  export JAVA_HOME=$(/usr/libexec/java_home -v 25)
+fi
+
+if [[ -f .env ]]; then
+  set -a
+  source .env
+  set +a
+fi
+
+echo "Starting PostgreSQL..."
+docker compose up -d --wait postgres
+echo "PostgreSQL ready on port ${DB_PORT:-5433}."
+
+cd server
+./mvnw spring-boot:run
