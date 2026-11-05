@@ -1,0 +1,144 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "@fontsource-variable/onest";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-heading: var(--font-sans);
+  --font-sans: "Onest Variable", sans-serif;
+  --color-class-br-stocks: var(--class-br-stocks);
+  --color-class-us-stocks: var(--class-us-stocks);
+  --color-class-fixed-income: var(--class-fixed-income);
+  --color-class-bitcoin: var(--class-bitcoin);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-warning: var(--warning);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+/* Paleta "A · Petróleo" (design/contribution-planner.pen e design.md da contribution-plan). */
+:root {
+  --background: #f6f8f9;
+  --foreground: #0f1b22;
+  --card: #ffffff;
+  --card-foreground: #0f1b22;
+  --popover: #ffffff;
+  --popover-foreground: #0f1b22;
+  --primary: #0e6b70;
+  --primary-foreground: #ffffff;
+  --secondary: #eaf0f2;
+  --secondary-foreground: #0f1b22;
+  --muted: #eef2f4;
+  --muted-foreground: #5b6770;
+  --accent: #e3f1f1;
+  --accent-foreground: #0e6b70;
+  --destructive: #c2362f;
+  --border: #dde3e7;
+  --input: #dde3e7;
+  --ring: #0e6b70;
+  --warning: #fff4d6;
+  --warning-foreground: #6b4a00;
+  --class-br-stocks: #2a78d6;
+  --class-us-stocks: #008300;
+  --class-fixed-income: #6250d6;
+  --class-bitcoin: #eb6834;
+  --chart-1: var(--class-br-stocks);
+  --chart-2: var(--class-us-stocks);
+  --chart-3: var(--class-fixed-income);
+  --chart-4: var(--class-bitcoin);
+  --chart-5: var(--primary);
+  --radius: 0.625rem;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #0f1b22;
+  --sidebar-primary: #0e6b70;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #e3f1f1;
+  --sidebar-accent-foreground: #0e6b70;
+  --sidebar-border: #dde3e7;
+  --sidebar-ring: #0e6b70;
+}
+
+.dark {
+  --background: #0b1215;
+  --foreground: #e8eef0;
+  --card: #121b1f;
+  --card-foreground: #e8eef0;
+  --popover: #121b1f;
+  --popover-foreground: #e8eef0;
+  --primary: #3ba9ac;
+  --primary-foreground: #06201f;
+  --secondary: #1a2529;
+  --secondary-foreground: #e8eef0;
+  --muted: #1a2529;
+  --muted-foreground: #93a3ab;
+  --accent: #12302f;
+  --accent-foreground: #7fd3d4;
+  --destructive: #e5534b;
+  --border: #24333a;
+  --input: #24333a;
+  --ring: #3ba9ac;
+  --warning: #3a2c07;
+  --warning-foreground: #f5c44e;
+  --class-br-stocks: #3987e5;
+  --class-us-stocks: #008300;
+  --class-fixed-income: #9085e9;
+  --class-bitcoin: #d95926;
+  --sidebar: #121b1f;
+  --sidebar-foreground: #e8eef0;
+  --sidebar-primary: #3ba9ac;
+  --sidebar-primary-foreground: #06201f;
+  --sidebar-accent: #12302f;
+  --sidebar-accent-foreground: #7fd3d4;
+  --sidebar-border: #24333a;
+  --sidebar-ring: #3ba9ac;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+}

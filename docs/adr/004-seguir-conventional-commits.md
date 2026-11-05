@@ -34,7 +34,7 @@ Opção escolhida: **"Conventional Commits"** ([v1.0.0](https://www.conventional
 ```
 
 - **Tipos**: `feat`, `fix`, `test`, `refactor`, `docs`, `style`, `perf`, `build`, `ci`, `chore`. Mudança incompatível leva `!` após o tipo ou o rodapé `BREAKING CHANGE:`.
-- **Escopo**: o nome da feature da spec (`contribution-plan`, `asset-weights`) ou a área (`adr`, `spec`, `frontend`, `backend`, `infra`).
+- **Escopo**: o nome da feature da spec (`contribution-plan`, `asset-weights`) ou a área (`adr`, `spec`, `client`, `server`, `infra`).
 - **Descrição**: em português, no imperativo e em minúsculas. Em commit de tarefa, começa pelo código da tarefa.
 - **Rodapé**: commits feitos com agente levam o `Co-Authored-By` do agente.
 

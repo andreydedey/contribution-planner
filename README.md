@@ -2,7 +2,7 @@
 
 An app that works out where each monthly investment contribution should go, following the "Onde Aportar" ("where to invest") rule: the money goes to the asset class furthest below its target and, within that class, is split half and half between the two stocks furthest below their own targets, never pushing any of them past its target.
 
-> **Status:** in design. The specs are written and the screens are drawn; the application code has not been written yet.
+> **Status:** early development. The specs are written, the screens are drawn and the server and client skeletons are in place; the features have not been built yet.
 
 The UI and the specs are in Portuguese (pt-BR), and amounts are in Brazilian reais (R$).
 
@@ -31,11 +31,35 @@ The portfolio has four asset classes: Brazilian stocks, US stocks, fixed income 
 
 | Layer | Technology |
 |---|---|
-| Backend | Java 25, Spring Boot 4, Maven, Flyway |
+| Server | Java 25, Spring Boot 4, Maven, Flyway |
 | Database | PostgreSQL 17 (Docker for local development) |
-| Frontend | React, Vite, TypeScript, shadcn/ui, Onest font |
+| Client | React, Vite, TypeScript, shadcn/ui, Onest font, Bun |
 
 Money is always stored as integer cents (`long`), never as floating point.
+
+## Running locally
+
+Requirements: Java 25, Bun and Docker.
+
+```sh
+# Database (PostgreSQL 17 on port 5433; set DB_PORT to change it)
+docker compose up -d
+
+# Server on http://localhost:8080
+cd server && ./mvnw spring-boot:run
+
+# Client on http://localhost:5173 (proxies /api to the server)
+cd client && bun install && bun run dev
+```
+
+To work on the client without the server, run `bun run dev:mock`: the API is mocked in the browser with MSW, starting from the example portfolio in the specs. In `client/`, `bun run test` runs the tests and `bun run lint` runs Biome.
+
+The server tests start their own PostgreSQL with Testcontainers (`./mvnw verify`). With Colima instead of Docker Desktop, point Testcontainers at its socket first:
+
+```sh
+export DOCKER_HOST=unix://$HOME/.colima/default/docker.sock
+export TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE=/var/run/docker.sock
+```
 
 ## Disclaimer
 
