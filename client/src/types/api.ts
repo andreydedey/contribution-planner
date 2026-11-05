@@ -11,6 +11,14 @@ export type Asset = {
 
 export type AssetInput = Omit<Asset, 'id'>
 
+export type PageResponse<T> = {
+  content: T[]
+  page: number
+  size: number
+  totalElements: number
+  totalPages: number
+}
+
 export type ClassTarget = {
   assetClass: AssetClass
   targetPercent: number
@@ -38,16 +46,10 @@ export type Plan = {
   warnings: string[]
 }
 
-export type ApiErrorCode =
-  | 'CODE_REQUIRED'
-  | 'VALUE_OUT_OF_RANGE'
-  | 'DUPLICATE_CODE'
-  | 'INVALID_CLASS'
-  | 'CONTRIBUTION_OUT_OF_RANGE'
-  | 'TARGETS_SUM_NOT_100'
-  | 'TARGET_OUT_OF_RANGE'
-
 export type ApiErrorBody = {
-  code: ApiErrorCode
+  timestamp: string
+  status: number
+  error: string
   message: string
+  path: string
 }
