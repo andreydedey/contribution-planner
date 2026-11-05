@@ -24,24 +24,21 @@ export function PlanClassProgress({ plan }: { plan: Plan }) {
         {rows.map((row) => {
           const info = assetClassInfo(row.assetClass)
           const receives = row.allocatedCents > 0
-          let status = 'no alvo'
-          if (row.gapCents > 0) status = `falta ${formatCents(row.gapCents)}`
-          if (row.gapCents < 0) status = 'acima do alvo'
 
           return (
             <div key={row.assetClass} className="grid gap-2">
               <div className="flex items-center justify-between gap-3">
-                <span className="flex items-center gap-2 text-sm">
+                <span className="flex items-center gap-2 whitespace-nowrap text-sm">
                   <AssetClassMarker assetClass={row.assetClass} />
                   <span className={receives ? 'font-semibold' : 'font-medium'}>{info.label}</span>
                 </span>
                 <span
                   className={cn(
-                    'text-xs tabular-nums',
+                    'whitespace-nowrap text-xs tabular-nums',
                     receives ? 'font-semibold text-primary' : 'text-muted-foreground',
                   )}
                 >
-                  {row.currentPercent}% de {row.targetPercent}% · {status}
+                  {row.currentPercent}% de {row.targetPercent}%
                 </span>
               </div>
               <div className="relative h-2 rounded-full bg-muted">

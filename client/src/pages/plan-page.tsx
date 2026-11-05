@@ -94,7 +94,7 @@ export function PlanPage() {
             <AlertTitle>{warning}</AlertTitle>
           </Alert>
         ))}
-        <div className="grid items-stretch gap-6 lg:grid-cols-[1fr_400px]">
+        <div className="grid items-stretch gap-6 xl:grid-cols-2">
           <PlanAllocations plan={plan} contributionCents={contributionCents} />
           <PlanClassProgress plan={plan} />
         </div>
@@ -166,7 +166,7 @@ function BeforeCalculating() {
 function PlanResultsSkeleton() {
   return (
     <div className="grid gap-6" role="status" aria-busy aria-label="Calculando o aporte">
-      <div className="grid gap-6 lg:grid-cols-[1fr_400px]">
+      <div className="grid gap-6 xl:grid-cols-2">
         <Card className="gap-0 pb-0">
           <CardHeader className="gap-2 border-b px-6">
             <Skeleton className="h-4 w-48" />
