@@ -25,9 +25,9 @@ public class ClassTargetService {
 
 	@Transactional(readOnly = true)
 	public List<ClassTargetDTO> list() {
-		return classTargetRepository.findAll().stream()
-				.sorted(Comparator.comparing(ClassTarget::getAssetClass))
-				.map(ClassTargetMapper::toDTO)
+		// Sorted in Java: the column stores the enum name, so ORDER BY would be alphabetical, not declaration order.
+		return classTargetRepository.findAllBy().stream()
+				.sorted(Comparator.comparing(ClassTargetDTO::assetClass))
 				.toList();
 	}
 
