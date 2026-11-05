@@ -1,4 +1,7 @@
-import { useState } from 'react'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useEffect } from 'react'
+import { Controller, useForm, useWatch } from 'react-hook-form'
+import { z } from 'zod'
 import { AssetClassMarker } from '@/components/asset-class-marker'
 import { Button } from '@/components/ui/button'
 import {
@@ -21,16 +24,38 @@ import type { AssetClass, ClassTarget } from '@/types/api'
 const TARGET_OUT_OF_RANGE = 'Meta deve ser um número inteiro de 0% a 100%'
 const SUM_NOT_100 = 'As metas devem somar 100%'
 
+/** Texto digitado → percentual inteiro de 0 a 100 (AC-053). */
+const targetPercent = z.string().transform((text, ctx) => {
+  const value = /^\d{1,3}$/.test(text.trim()) ? Number(text) : Number.NaN
+  if (!(value <= 100)) {
+    ctx.addIssue({ code: 'custom', message: TARGET_OUT_OF_RANGE })
+    return z.NEVER
+  }
+  return value
+})
+
+const classTargetsSchema = z
+  .object({
+    BR_STOCKS: targetPercent,
+    US_STOCKS: targetPercent,
+    FIXED_INCOME: targetPercent,
+    BITCOIN: targetPercent,
+  })
+  .superRefine((targets, ctx) => {
+    const percents = Object.values(targets)
+    if (!percents.every(Number.isInteger)) return
+    if (percents.reduce((sum, percent) => sum + percent, 0) !== 100) {
+      ctx.addIssue({ code: 'custom', path: ['root'], message: SUM_NOT_100 })
+    }
+  })
+
+type ClassTargetsInput = z.input<typeof classTargetsSchema>
+type ClassTargetsOutput = z.output<typeof classTargetsSchema>
+
 type Props = {
   open: boolean
   onOpenChange: (open: boolean) => void
   targets: ClassTarget[]
-}
-
-function parsePercent(text: string): number | null {
-  if (!/^\d{1,3}$/.test(text.trim())) return null
-  const value = Number(text)
-  return value <= 100 ? value : null
 }
 
 export function ClassTargetsDialog({ open, onOpenChange, targets }: Props) {
@@ -46,23 +71,31 @@ export function ClassTargetsDialog({ open, onOpenChange, targets }: Props) {
 
 function ClassTargetsForm({ targets, onSaved }: { targets: ClassTarget[]; onSaved: () => void }) {
   const updateTargets = useUpdateClassTargets()
-  const [values, setValues] = useState<Record<AssetClass, string>>(
-    () =>
-      Object.fromEntries(
-        ASSET_CLASSES.map((info) => [
-          info.id,
-          String(targets.find((t) => t.assetClass === info.id)?.targetPercent ?? 0),
-        ]),
-      ) as Record<AssetClass, string>,
-  )
+  const form = useForm<ClassTargetsInput, unknown, ClassTargetsOutput>({
+    resolver: zodResolver(classTargetsSchema),
+    mode: 'onChange',
+    defaultValues: Object.fromEntries(
+      ASSET_CLASSES.map((info) => [
+        info.id,
+        String(targets.find((t) => t.assetClass === info.id)?.targetPercent ?? 0),
+      ]),
+    ) as ClassTargetsInput,
+  })
 
-  const parsed = ASSET_CLASSES.map((info) => ({
-    assetClass: info.id,
-    targetPercent: parsePercent(values[info.id]),
-  }))
-  const allValid = parsed.every((t) => t.targetPercent !== null)
-  const sum = parsed.reduce((acc, t) => acc + (t.targetPercent ?? 0), 0)
-  const canSave = allValid && sum === 100 && !updateTargets.isPending
+  // A soma depende das quatro metas: cada mudança valida o formulário inteiro (AC-052).
+  useEffect(() => {
+    form.trigger()
+    const subscription = form.watch(() => form.trigger())
+    return () => subscription.unsubscribe()
+  }, [form])
+
+  const values = useWatch({ control: form.control })
+  const sum = ASSET_CLASSES.reduce((acc, info) => {
+    const parsed = targetPercent.safeParse(values[info.id] ?? '')
+    return acc + (parsed.success ? parsed.data : 0)
+  }, 0)
+  const { errors, isValid } = form.formState
+  const hasFieldError = ASSET_CLASSES.some((info) => errors[info.id])
 
   let saveError: string | null = null
   if (updateTargets.error) {
@@ -76,11 +109,13 @@ function ClassTargetsForm({ targets, onSaved }: { targets: ClassTarget[]; onSave
     <form
       noValidate
       className="grid gap-6"
-      onSubmit={(event) => {
-        event.preventDefault()
-        if (!canSave) return
-        updateTargets.mutate(parsed as ClassTarget[], { onSuccess: onSaved })
-      }}
+      onSubmit={form.handleSubmit((saved) => {
+        const payload = ASSET_CLASSES.map((info) => ({
+          assetClass: info.id,
+          targetPercent: saved[info.id as AssetClass],
+        }))
+        updateTargets.mutate(payload, { onSuccess: onSaved })
+      })}
     >
       <DialogHeader>
         <DialogTitle>Metas por classe</DialogTitle>
@@ -88,45 +123,50 @@ function ClassTargetsForm({ targets, onSaved }: { targets: ClassTarget[]; onSave
       </DialogHeader>
 
       <FieldGroup className="gap-4">
-        {ASSET_CLASSES.map((info, index) => {
-          const invalid = parsed[index].targetPercent === null
-          const id = `target-${info.id}`
-          return (
-            <Field key={info.id} orientation="horizontal" data-invalid={invalid}>
-              <FieldLabel htmlFor={id} className="flex-1">
-                <AssetClassMarker assetClass={info.id} />
-                {info.label}
-              </FieldLabel>
-              <div className="relative w-24">
-                <Input
-                  id={id}
-                  inputMode="numeric"
-                  value={values[info.id]}
-                  aria-invalid={invalid}
-                  className="pr-7 text-right tabular-nums"
-                  onChange={(event) => setValues({ ...values, [info.id]: event.target.value })}
-                />
-                <span className="-translate-y-1/2 absolute top-1/2 right-3 text-muted-foreground text-sm">
-                  %
-                </span>
-              </div>
-            </Field>
-          )
-        })}
+        {ASSET_CLASSES.map((info) => (
+          <Controller
+            key={info.id}
+            name={info.id}
+            control={form.control}
+            render={({ field, fieldState }) => {
+              const id = `target-${info.id}`
+              return (
+                <Field orientation="horizontal" data-invalid={fieldState.invalid}>
+                  <FieldLabel htmlFor={id} className="flex-1">
+                    <AssetClassMarker assetClass={info.id} />
+                    {info.label}
+                  </FieldLabel>
+                  <div className="relative w-24">
+                    <Input
+                      {...field}
+                      id={id}
+                      inputMode="numeric"
+                      aria-invalid={fieldState.invalid}
+                      className="pr-7 text-right tabular-nums"
+                    />
+                    <span className="-translate-y-1/2 absolute top-1/2 right-3 text-muted-foreground text-sm">
+                      %
+                    </span>
+                  </div>
+                </Field>
+              )
+            }}
+          />
+        ))}
       </FieldGroup>
 
       <div className="grid gap-2">
         <p
           className={cn(
             'text-sm tabular-nums',
-            allValid && sum === 100 ? 'text-muted-foreground' : 'font-medium text-destructive',
+            isValid ? 'text-muted-foreground' : 'font-medium text-destructive',
           )}
         >
           Soma: {sum}%{sum < 100 && ` · faltam ${100 - sum}%`}
           {sum > 100 && ` · sobram ${sum - 100}%`}
         </p>
-        {!allValid && <FieldError>{TARGET_OUT_OF_RANGE}</FieldError>}
-        {allValid && sum !== 100 && <FieldError>{SUM_NOT_100}</FieldError>}
+        {hasFieldError && <FieldError>{TARGET_OUT_OF_RANGE}</FieldError>}
+        {!hasFieldError && errors.root && <FieldError>{errors.root.message}</FieldError>}
         {saveError && <FieldError>{saveError}</FieldError>}
       </div>
 
@@ -136,7 +176,7 @@ function ClassTargetsForm({ targets, onSaved }: { targets: ClassTarget[]; onSave
             Cancelar
           </Button>
         </DialogClose>
-        <Button type="submit" size="lg" disabled={!canSave}>
+        <Button type="submit" size="lg" disabled={!isValid || updateTargets.isPending}>
           Salvar metas
         </Button>
       </DialogFooter>

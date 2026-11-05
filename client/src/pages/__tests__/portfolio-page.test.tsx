@@ -155,8 +155,12 @@ describe('Metas por classe', () => {
     await user.click(within(dialog).getByRole('button', { name: 'Salvar metas' }))
 
     await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument())
-    expect(screen.getByText(/meta 50%/)).toBeInTheDocument()
     expect(db.targets.map((t) => t.targetPercent)).toEqual([50, 20, 20, 10])
+
+    await user.click(screen.getByRole('button', { name: 'Editar metas' }))
+    const reopened = await screen.findByRole('dialog')
+    expect(within(reopened).getByLabelText('Ações BR')).toHaveValue('50')
+    expect(within(reopened).getByLabelText('Stocks')).toHaveValue('20')
   })
 
   it('AC-052: metas que não somam 100% são recusadas @spec:AC-052', async () => {
