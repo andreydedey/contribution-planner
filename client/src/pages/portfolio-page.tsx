@@ -47,11 +47,7 @@ export function PortfolioPage() {
 
   return (
     <div className="grid gap-8">
-      <PortfolioSummary
-        assets={assets.data}
-        targets={targets.data}
-        onEditTargets={() => setTargetsOpen(true)}
-      />
+      <PortfolioSummary assets={assets.data} onEditTargets={() => setTargetsOpen(true)} />
 
       <div className="grid items-start gap-6 lg:grid-cols-[1fr_360px]">
         {assets.data.length === 0 ? (
