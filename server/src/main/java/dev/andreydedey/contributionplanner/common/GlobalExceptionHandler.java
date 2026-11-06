@@ -18,6 +18,8 @@ import org.springframework.web.servlet.resource.NoResourceFoundException;
 import dev.andreydedey.contributionplanner.asset.AssetNotFoundException;
 import dev.andreydedey.contributionplanner.asset.DuplicateAssetCodeException;
 import dev.andreydedey.contributionplanner.classtarget.InvalidClassTargetsException;
+import dev.andreydedey.contributionplanner.pluggy.PluggyNotConfiguredException;
+import dev.andreydedey.contributionplanner.pluggy.PluggyUnavailableException;
 import lombok.extern.slf4j.Slf4j;
 import tools.jackson.core.JacksonException;
 
@@ -72,6 +74,17 @@ public class GlobalExceptionHandler {
 	@ExceptionHandler(DuplicateAssetCodeException.class)
 	public ResponseEntity<ErrorResponse> handleConflict(RuntimeException ex, HttpServletRequest request) {
 		return buildResponse(HttpStatus.CONFLICT, ex.getMessage(), request);
+	}
+
+	@ExceptionHandler(PluggyNotConfiguredException.class)
+	public ResponseEntity<ErrorResponse> handleNotConfigured(RuntimeException ex, HttpServletRequest request) {
+		return buildResponse(HttpStatus.SERVICE_UNAVAILABLE, ex.getMessage(), request);
+	}
+
+	@ExceptionHandler(PluggyUnavailableException.class)
+	public ResponseEntity<ErrorResponse> handleBadGateway(RuntimeException ex, HttpServletRequest request) {
+		log.warn("Pluggy request failed on {} {}", request.getMethod(), request.getRequestURI(), ex);
+		return buildResponse(HttpStatus.BAD_GATEWAY, ex.getMessage(), request);
 	}
 
 	@ExceptionHandler(Exception.class)
