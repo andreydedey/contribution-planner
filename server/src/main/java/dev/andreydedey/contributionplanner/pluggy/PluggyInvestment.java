@@ -10,6 +10,7 @@ public record PluggyInvestment(
 		String name,
 		String type,
 		String subtype,
+		String status,
 		BigDecimal quantity,
 		BigDecimal balance,
 		String currencyCode) {

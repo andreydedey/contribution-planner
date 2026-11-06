@@ -8,6 +8,7 @@ public record PluggyPositionDTO(
 		String name,
 		String type,
 		String subtype,
+		String status,
 		BigDecimal quantity,
 		long valueCents,
 		String currencyCode) {

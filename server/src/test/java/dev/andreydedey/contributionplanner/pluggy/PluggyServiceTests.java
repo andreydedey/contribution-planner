@@ -21,7 +21,12 @@ class PluggyServiceTests {
 	}
 
 	private static PluggyInvestment investment(String itemId, String code, String type, String balance) {
-		return new PluggyInvestment("inv-" + code, itemId, code, code + " ON", type, "STOCK", BigDecimal.TEN,
+		return investment(itemId, code, type, "ACTIVE", balance);
+	}
+
+	private static PluggyInvestment investment(String itemId, String code, String type, String status,
+			String balance) {
+		return new PluggyInvestment("inv-" + code, itemId, code, code + " ON", type, "STOCK", status, BigDecimal.TEN,
 				new BigDecimal(balance), "BRL");
 	}
 
@@ -34,6 +39,16 @@ class PluggyServiceTests {
 		assertThat(service.listPositions())
 				.extracting(PluggyPositionDTO::code, PluggyPositionDTO::valueCents)
 				.containsExactly(tuple("WEGE3", 123457L), tuple("TD", 50000L));
+	}
+
+	@Test
+	void leavesOutClosedPositions() {
+		when(client.listInvestments("item-1")).thenReturn(List.of(
+				investment("item-1", "WEGE3", "EQUITY", "ACTIVE", "100"),
+				investment("item-1", "ITUB3", "EQUITY", "TOTAL_WITHDRAWAL", "0")));
+		var service = new PluggyService(client, properties("id", "secret", List.of("item-1")));
+
+		assertThat(service.listPositions()).extracting(PluggyPositionDTO::code).containsExactly("WEGE3");
 	}
 
 	@Test

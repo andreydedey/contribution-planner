@@ -10,7 +10,7 @@ public final class PluggyPositionMapper {
 
 	public static PluggyPositionDTO toDTO(PluggyInvestment investment) {
 		return new PluggyPositionDTO(investment.id(), investment.code(), investment.name(), investment.type(),
-				investment.subtype(), investment.quantity(), toCents(investment.balance()),
+				investment.subtype(), investment.status(), investment.quantity(), toCents(investment.balance()),
 				investment.currencyCode());
 	}
 
