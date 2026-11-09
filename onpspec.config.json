@@ -1,14 +1,14 @@
 {
-  "testCommand": "node --test",
-  "reporter": "tap",
+  "testCommand": "cd client && bunx vitest run --reporter=json --outputFile=../.spec/verification/vitest.json",
+  "reporter": "vitest-json",
+  "reporterOutputFile": ".spec/verification/vitest.json",
   "testGlobs": [
-    "test/**",
-    "tests/**",
-    "src/**/*.test.*",
-    "src/**/*.spec.*",
-    "__tests__/**"
+    "client/src/**/*.test.*",
+    "client/src/**/__tests__/**",
+    "server/src/test/**"
   ],
   "srcGlobs": [
-    "src/**"
+    "client/src/**",
+    "server/src/main/**"
   ]
 }
