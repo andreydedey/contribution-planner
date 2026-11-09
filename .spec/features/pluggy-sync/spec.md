@@ -101,7 +101,7 @@ Como Andrey, quero ser avisado quando a sincronização falha, para que eu não 
 
 - **Dado** a Carteira aberta
 - **Quando** eu clico em "Sincronizar com a Pluggy"
-- **Então** o botão mostra "Sincronizando..." e fica desabilitado até a resposta chegar
+- **Então** o botão mostra "Sincronizando…" e fica desabilitado até a resposta chegar
 
 ## Fora de escopo
 

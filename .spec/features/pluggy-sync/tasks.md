@@ -29,8 +29,7 @@
 - Arquivos: client/src/types/api.ts, client/src/testing/mocks/db.ts, client/src/testing/mocks/handlers.ts, client/src/hooks/use-assets.ts, client/src/hooks/use-pluggy-sync.ts
 - Notas: o mock do MSW repete as regras do server, como já faz com ativos e metas.
 
-## T-005 — Botão "Sincronizar com a Pluggy" e avisos na Carteira [pendente]
-
+## T-005 — Botão "Sincronizar com a Pluggy" e avisos na Carteira [em-andamento]
 - Refs: US-007, US-008, AC-057, AC-058, AC-059, AC-060, AC-061, AC-062, AC-063, AC-064, AC-066, AC-067, AC-068
 - Arquivos: client/src/components/pluggy-sync-card.tsx, client/src/pages/portfolio-page.tsx, client/src/pages/__tests__/pluggy-sync.test.tsx
 - Notas: depende de T-004.
