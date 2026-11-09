@@ -18,7 +18,10 @@ public record AssetDTO(
 
 		@NotNull(message = VALUE_OUT_OF_RANGE)
 		@Range(min = 0, max = 10_000_000_000L, message = VALUE_OUT_OF_RANGE)
-		Long valueCents) {
+		Long valueCents,
+
+		// Read-only: set by the Pluggy sync, ignored when an asset is created or edited.
+		String pluggyInvestmentId) {
 
 	private static final String VALUE_OUT_OF_RANGE = "Valor deve estar entre R$ 0,00 e R$ 100.000.000,00";
 

@@ -6,7 +6,8 @@ public final class AssetMapper {
 	}
 
 	public static AssetDTO toDTO(Asset entity) {
-		return new AssetDTO(entity.getId(), entity.getCode(), entity.getAssetClass(), entity.getValueCents());
+		return new AssetDTO(entity.getId(), entity.getCode(), entity.getAssetClass(), entity.getValueCents(),
+				entity.getPluggyInvestmentId());
 	}
 
 }

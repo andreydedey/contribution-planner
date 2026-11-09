@@ -38,4 +38,7 @@ public class Asset {
 	@Column(name = "value_cents", nullable = false)
 	private long valueCents;
 
+	@Column(name = "pluggy_investment_id", unique = true, length = 64)
+	private String pluggyInvestmentId;
+
 }

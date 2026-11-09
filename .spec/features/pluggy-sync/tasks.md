@@ -14,8 +14,7 @@
   - O client monta os avisos a partir dessa resposta e refaz a consulta de ativos.
 -->
 
-## T-002 — Ligar o ativo a um investimento da Pluggy [pendente]
-
+## T-002 — Ligar o ativo a um investimento da Pluggy [em-andamento]
 - Refs: US-007, AC-065
 - Arquivos: server/src/main/resources/db/migration/V2__add_pluggy_investment_id_to_asset.sql, server/src/main/java/dev/andreydedey/contributionplanner/asset/Asset.java, server/src/main/java/dev/andreydedey/contributionplanner/asset/AssetDTO.java, server/src/main/java/dev/andreydedey/contributionplanner/asset/AssetMapper.java, server/src/main/java/dev/andreydedey/contributionplanner/asset/AssetRepository.java, server/src/test/java/dev/andreydedey/contributionplanner/asset/AssetApiTests.java
 - Notas: o DTO expõe pluggyInvestmentId só para leitura; criar e editar ativo ignoram o campo.

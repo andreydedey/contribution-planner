@@ -101,6 +101,20 @@ class AssetApiTests extends ApiIntegrationTest {
 	}
 
 	@Test
+	@DisplayName("AC-065: ativo digitado à mão não fica ligado à Pluggy @spec:AC-065")
+	void handTypedAssetIsNotLinkedToPluggy() throws Exception {
+		var body = """
+				{"code": "BTC", "assetClass": "BITCOIN", "valueCents": 300000, "pluggyInvestmentId": "inv-1"}""";
+		long id = JsonPath.<Number>read(post("/api/assets", body).getResponse().getContentAsString(), "$.id")
+				.longValue();
+		assertThat(put("/api/assets/" + id, body)).hasStatusOk();
+
+		assertThat(get("/api/assets"))
+				.bodyJson()
+				.extractingPath("$.content[0].pluggyInvestmentId").isNull();
+	}
+
+	@Test
 	@DisplayName("Editar para um código que já existe é recusado")
 	void updatingToExistingCodeIsRejected() throws Exception {
 		createAsset("WEGE3", "BR_STOCKS", 0);
