@@ -24,8 +24,7 @@
 - Arquivos: server/src/main/java/dev/andreydedey/contributionplanner/pluggy/PluggySyncService.java, server/src/main/java/dev/andreydedey/contributionplanner/pluggy/PluggySyncResultDTO.java, server/src/main/java/dev/andreydedey/contributionplanner/pluggy/PluggyController.java, server/src/test/java/dev/andreydedey/contributionplanner/pluggy/PluggySyncApiTests.java
 - Notas: depende de T-002. Classes: EQUITY/STOCK → Ações BR, FIXED_INCOME → Renda fixa (ASM-017); código da renda fixa sem código = nome cortado em 20 (ASM-018).
 
-## T-004 — Contrato e mock da sincronização no client [pendente]
-
+## T-004 — Contrato e mock da sincronização no client [em-andamento]
 - Refs: US-007
 - Arquivos: client/src/types/api.ts, client/src/testing/mocks/db.ts, client/src/testing/mocks/handlers.ts, client/src/hooks/use-assets.ts, client/src/hooks/use-pluggy-sync.ts
 - Notas: o mock do MSW repete as regras do server, como já faz com ativos e metas.
