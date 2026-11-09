@@ -34,8 +34,7 @@
 - Arquivos: client/src/components/pluggy-sync-card.tsx, client/src/pages/portfolio-page.tsx, client/src/pages/__tests__/pluggy-sync.test.tsx
 - Notas: depende de T-004.
 
-## T-006 — Marca "Pluggy" nos ativos sincronizados [pendente]
-
+## T-006 — Marca "Pluggy" nos ativos sincronizados [em-andamento]
 - Refs: US-007, AC-065
 - Arquivos: client/src/components/asset-list.tsx, client/src/pages/__tests__/portfolio-page.test.tsx
 - Notas: depende de T-004.

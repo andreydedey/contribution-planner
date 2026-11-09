@@ -183,3 +183,18 @@ describe('Metas por classe', () => {
     expect(within(dialog).getByRole('button', { name: 'Salvar metas' })).toBeDisabled()
   })
 })
+
+describe('Ativos da Pluggy', () => {
+  it('AC-065: ativo que vem da Pluggy é identificado na lista @spec:AC-065', async () => {
+    db.reset([
+      { code: 'WEGE3', assetClass: 'BR_STOCKS', valueCents: 202_398, pluggyInvestmentId: 'inv-WEGE3' },
+      { code: 'BTC', assetClass: 'BITCOIN', valueCents: 300_000 },
+    ])
+    renderApp()
+
+    const wege3 = (await screen.findByText('WEGE3')).closest('li')
+    const btc = screen.getByText('BTC').closest('li')
+    expect(wege3 && within(wege3).getByText('Pluggy')).toBeInTheDocument()
+    expect(btc && within(btc).queryByText('Pluggy')).toBeNull()
+  })
+})
