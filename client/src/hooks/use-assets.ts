@@ -21,7 +21,7 @@ export function useAssets() {
 }
 
 // Há uma só consulta de ativos, compartilhada pela Carteira e pelo Plano: refazê-la já atualiza as duas telas.
-function useRefetchAssets() {
+export function useRefetchAssets() {
   const queryClient = useQueryClient()
   return () => queryClient.refetchQueries({ queryKey: assetsQueryKey })
 }

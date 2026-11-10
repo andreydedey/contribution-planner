@@ -6,6 +6,7 @@ import { AssetList } from '@/components/asset-list'
 import { ClassTargetsDialog } from '@/components/class-targets-dialog'
 import { DeleteAssetDialog } from '@/components/delete-asset-dialog'
 import { LoadError } from '@/components/load-error'
+import { PluggySyncCard } from '@/components/pluggy-sync-card'
 import { PortfolioSummary } from '@/components/portfolio-summary'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
@@ -57,6 +58,7 @@ export function PortfolioPage() {
         )}
 
         <aside className="grid gap-6">
+          <PluggySyncCard />
           {/* A key remonta o formulário ao trocar entre novo e edição. */}
           <AssetForm
             key={editing?.id ?? 'new'}

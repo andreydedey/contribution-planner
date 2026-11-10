@@ -1,0 +1,72 @@
+{
+  "feature": "pluggy-sync",
+  "timestamp": "2026-11-09T19:22:46.071Z",
+  "gitRev": "ad2f7ce",
+  "command": "cd client && bunx vitest run --reporter=json --outputFile=../.spec/verification/vitest.json",
+  "reporter": "vitest-json",
+  "exitCode": 0,
+  "testsParsed": 37,
+  "results": {
+    "AC-057": {
+      "status": "pass",
+      "testName": "Sincronizar com a Pluggy AC-057: ativo já cadastrado recebe o valor da Pluggy @spec:AC-057 AC-057: ativo já cadastrado recebe o valor da Pluggy @spec:AC-057",
+      "method": "vitest-json"
+    },
+    "AC-058": {
+      "status": "pass",
+      "testName": "Sincronizar com a Pluggy AC-058: ação que só existe na Pluggy é cadastrada em Ações BR @spec:AC-058 AC-058: ação que só existe na Pluggy é cadastrada em Ações BR @spec:AC-058",
+      "method": "vitest-json"
+    },
+    "AC-059": {
+      "status": "pass",
+      "testName": "Sincronizar com a Pluggy AC-059: renda fixa que só existe na Pluggy é cadastrada em Renda fixa @spec:AC-059 AC-059: renda fixa que só existe na Pluggy é cadastrada em Renda fixa @spec:AC-059",
+      "method": "vitest-json"
+    },
+    "AC-060": {
+      "status": "pass",
+      "testName": "Sincronizar com a Pluggy AC-060: ativo digitado à mão não é alterado @spec:AC-060 AC-060: ativo digitado à mão não é alterado @spec:AC-060",
+      "method": "vitest-json"
+    },
+    "AC-061": {
+      "status": "pass",
+      "testName": "Sincronizar com a Pluggy AC-061: ativo que sumiu da Pluggy mantém o último valor, com aviso @spec:AC-061 AC-061: ativo que sumiu da Pluggy mantém o último valor, com aviso @spec:AC-061",
+      "method": "vitest-json"
+    },
+    "AC-062": {
+      "status": "pass",
+      "testName": "Sincronizar com a Pluggy AC-062: tipo de investimento que a carteira não usa é ignorado, com aviso @spec:AC-062 AC-062: tipo de investimento que a carteira não usa é ignorado, com aviso @spec:AC-062",
+      "method": "vitest-json"
+    },
+    "AC-063": {
+      "status": "pass",
+      "testName": "Sincronizar com a Pluggy AC-063: sincronizar de novo não duplica ativos @spec:AC-063 AC-063: sincronizar de novo não duplica ativos @spec:AC-063",
+      "method": "vitest-json"
+    },
+    "AC-064": {
+      "status": "pass",
+      "testName": "Sincronizar com a Pluggy AC-064: valor digitado à mão é substituído pelo da Pluggy @spec:AC-064 AC-064: valor digitado à mão é substituído pelo da Pluggy @spec:AC-064",
+      "method": "vitest-json"
+    },
+    "AC-065": {
+      "status": "pass",
+      "testName": "Ativos da Pluggy AC-065: ativo que vem da Pluggy é identificado na lista @spec:AC-065 AC-065: ativo que vem da Pluggy é identificado na lista @spec:AC-065",
+      "method": "vitest-json"
+    },
+    "AC-066": {
+      "status": "pass",
+      "testName": "Sincronizar com a Pluggy AC-066: falha na Pluggy não altera a carteira @spec:AC-066 AC-066: falha na Pluggy não altera a carteira @spec:AC-066",
+      "method": "vitest-json"
+    },
+    "AC-067": {
+      "status": "pass",
+      "testName": "Sincronizar com a Pluggy AC-067: sem credenciais da Pluggy a tela avisa @spec:AC-067 AC-067: sem credenciais da Pluggy a tela avisa @spec:AC-067",
+      "method": "vitest-json"
+    },
+    "AC-068": {
+      "status": "pass",
+      "testName": "Sincronizar com a Pluggy AC-068: botão fica bloqueado enquanto sincroniza @spec:AC-068 AC-068: botão fica bloqueado enquanto sincroniza @spec:AC-068",
+      "method": "vitest-json"
+    }
+  },
+  "principles": {}
+}

@@ -1,15 +1,30 @@
 import { HttpResponse, http } from 'msw/http'
 import { ASSET_CLASSES } from '@/config/asset-classes'
 import { MAX_ASSET_VALUE_CENTS, MAX_CONTRIBUTION_CENTS } from '@/lib/money'
-import type { ApiErrorBody, Asset, AssetInput, ClassTarget, PageResponse } from '@/types/api'
+import type {
+  ApiErrorBody,
+  Asset,
+  AssetClass,
+  AssetInput,
+  ClassTarget,
+  PageResponse,
+  PluggyPosition,
+  PluggySyncResult,
+} from '@/types/api'
 import { calculatePlan } from './calculate-plan'
 import { db } from './db'
 
 // Mock da API do design.md, com as mesmas validações e códigos de erro do server.
 
-const ERROR_NAMES: Record<number, string> = { 400: 'Bad Request', 404: 'Not Found', 409: 'Conflict' }
+const ERROR_NAMES: Record<number, string> = {
+  400: 'Bad Request',
+  404: 'Not Found',
+  409: 'Conflict',
+  502: 'Bad Gateway',
+  503: 'Service Unavailable',
+}
 
-const error = (status: number, message: string) =>
+export const error = (status: number, message: string) =>
   HttpResponse.json<ApiErrorBody>(
     { timestamp: new Date().toISOString(), status, error: ERROR_NAMES[status], message, path: '' },
     { status },
@@ -34,6 +49,17 @@ function validateAsset(input: AssetInput, ignoreId?: number) {
     return error(409, 'Ativo já cadastrado')
   }
   return null
+}
+
+function pluggyAssetClass(position: PluggyPosition): AssetClass | null {
+  if (position.type === 'EQUITY' && position.subtype === 'STOCK') return 'BR_STOCKS'
+  if (position.type === 'FIXED_INCOME') return 'FIXED_INCOME'
+  return null
+}
+
+function pluggyCode(position: PluggyPosition) {
+  const code = (position.code?.trim() ? position.code : position.name).trim().toUpperCase()
+  return code.slice(0, 20).trim()
 }
 
 export const handlers = [
@@ -67,7 +93,8 @@ export const handlers = [
     const input = (await request.json()) as AssetInput
     const invalid = validateAsset(input, id)
     if (invalid) return invalid
-    db.assets[index] = { ...input, code: input.code.trim().toUpperCase(), id }
+    // Editing keeps the link to Pluggy, as on the server.
+    db.assets[index] = { ...db.assets[index], ...input, code: input.code.trim().toUpperCase(), id }
     return HttpResponse.json(db.assets[index])
   }),
 
@@ -92,6 +119,47 @@ export const handlers = [
     }
     db.targets = targets
     return HttpResponse.json(db.targets)
+  }),
+
+  // Same rules as PluggySyncService on the server.
+  http.post('/api/pluggy/sync', () => {
+    const result: PluggySyncResult = { updated: [], created: [], missing: [], ignored: [] }
+    const syncedIds = new Set<string>()
+    for (const position of db.pluggyPositions) {
+      const assetClass = pluggyAssetClass(position)
+      if (!assetClass) {
+        result.ignored.push(position.name)
+        continue
+      }
+      const code = pluggyCode(position)
+      const existing =
+        db.assets.find((a) => a.pluggyInvestmentId === position.id) ??
+        db.assets.find((a) => a.code === code && !a.pluggyInvestmentId)
+      if (!existing && db.assets.some((a) => a.code === code)) {
+        result.ignored.push(position.name)
+        continue
+      }
+      if (existing) {
+        existing.valueCents = position.valueCents
+        existing.pluggyInvestmentId = position.id
+        result.updated.push(existing.code)
+      } else {
+        db.assets.push({
+          id: db.nextId++,
+          code,
+          assetClass,
+          valueCents: position.valueCents,
+          pluggyInvestmentId: position.id,
+        })
+        result.created.push(code)
+      }
+      syncedIds.add(position.id)
+    }
+    result.missing = db.assets
+      .filter((a) => a.pluggyInvestmentId && !syncedIds.has(a.pluggyInvestmentId))
+      .map((a) => a.code)
+      .sort()
+    return HttpResponse.json(result)
   }),
 
   http.post('/api/plans', async ({ request }) => {

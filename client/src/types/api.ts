@@ -7,9 +7,11 @@ export type Asset = {
   code: string
   assetClass: AssetClass
   valueCents: number
+  /** Filled when the asset comes from Pluggy; null for assets typed by hand. */
+  pluggyInvestmentId?: string | null
 }
 
-export type AssetInput = Omit<Asset, 'id'>
+export type AssetInput = Omit<Asset, 'id' | 'pluggyInvestmentId'>
 
 export type PageResponse<T> = {
   content: T[]
@@ -44,6 +46,26 @@ export type Plan = {
   allocations: PlanAllocation[]
   unallocatedCents: number
   warnings: string[]
+}
+
+export type PluggyPosition = {
+  id: string
+  code: string | null
+  name: string
+  type: string
+  subtype: string | null
+  status: string
+  quantity: number | null
+  valueCents: number
+  currencyCode: string
+}
+
+/** Codes of the assets updated, created and kept, plus the names of the Pluggy investments left out. */
+export type PluggySyncResult = {
+  updated: string[]
+  created: string[]
+  missing: string[]
+  ignored: string[]
 }
 
 export type ApiErrorBody = {

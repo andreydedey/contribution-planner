@@ -1,5 +1,6 @@
 import { CircleDashed, Pencil, Trash2 } from 'lucide-react'
 import { AssetClassMarker } from '@/components/asset-class-marker'
+import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { ASSET_CLASSES } from '@/config/asset-classes'
@@ -48,7 +49,10 @@ export function AssetList({ assets, targets, onEdit, onDelete }: Props) {
               <ul>
                 {classAssets.map((asset) => (
                   <li key={asset.id} className="flex items-center gap-4 border-t py-3 pr-4 pl-5">
-                    <span className="flex-1 font-medium text-sm">{asset.code}</span>
+                    <span className="flex flex-1 items-center gap-2 font-medium text-sm">
+                      {asset.code}
+                      {asset.pluggyInvestmentId && <Badge variant="secondary">Pluggy</Badge>}
+                    </span>
                     <span
                       className={cn(
                         'text-sm tabular-nums',

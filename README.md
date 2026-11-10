@@ -50,6 +50,8 @@ Requirements: Java 25, Bun and Docker.
 cd client && bun install && bun run dev
 ```
 
+To read the investments connected through MeuPluggy, copy `.env.example` to `.env` and fill in the Pluggy client ID, client secret and item IDs. `GET /api/pluggy/positions` then lists the positions with their values in cents; without the credentials it answers 503.
+
 To work on the client without the server, run `bun run dev:mock`: the API is mocked in the browser with MSW, starting from the example portfolio in the specs. In `client/`, `bun run test` runs the tests and `bun run lint` runs Biome.
 
 The server tests start their own PostgreSQL with Testcontainers (`./mvnw verify`). With Colima instead of Docker Desktop, point Testcontainers at its socket first:

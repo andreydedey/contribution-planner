@@ -1,2 +1,3 @@
 .env
 *.class
+.spec/verification/vitest.json
